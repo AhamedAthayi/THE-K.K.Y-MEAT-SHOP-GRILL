@@ -1,0 +1,445 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Fira Sans", sans-serif;
+}
+
+body {
+    background: #f8f9fa;
+}
+
+/* Navbar */
+    #navbarSupportedContent .btn-profile {
+        background: white;
+        color: #dc3545;
+        border: 2px solid #dc3545;
+        padding: 8px 16px;
+        border-radius: 15px;
+        font-weight: 500;
+        transition: all 0.3s;
+        margin-left: 8px;
+        font-size: 12px;
+    }
+
+    #navbarSupportedContent .btn-profile:hover {
+        background: #dc3545;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
+    }
+#navbar {
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    padding: 0.8rem 5rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    background: white;
+}
+
+.navbar .navbar-brand {
+    font-size: 22px;
+    font-weight: 800;
+    color: #dc3545 !important;
+    letter-spacing: 1px;
+}
+
+#navbarSupportedContent a {
+    color: #333;
+    font-weight: 500;
+    margin: 0 10px;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s;
+}
+
+#navbarSupportedContent a:hover {
+    border-bottom: 3px solid #dc3545;
+    color: #dc3545;
+}
+
+/* Navbar Buttons */
+#navbarSupportedContent .btn {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 9px;
+    border-radius: 15px;
+    font-weight: 500;
+    transition: all 0.3s;
+    margin-left: 8px;
+    font-size: 12px;
+}
+
+#navbarSupportedContent .btn:hover {
+    background: #c82333;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(200, 53, 69, 0.3);
+}
+
+/* Sign In Button - Outline Style */
+#navbarSupportedContent .btn-signin {
+    background: white;
+    color: #dc3545;
+    border: 2px solid #dc3545;
+}
+
+#navbarSupportedContent .btn-signin:hover {
+    background: #dc3545;
+    color: white;
+    border: 2px solid #dc3545;
+}
+
+/* Sign Up Button - Filled Style */
+#navbarSupportedContent .btn-signup {
+    background: #28a745;
+    color: white;
+    border: 2px solid #28a745;
+}
+
+#navbarSupportedContent .btn-signup:hover {
+    background: #218838;
+    border: 2px solid #218838;
+    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+}
+
+/* Cart Button - Red Style */
+#navbarSupportedContent .btn-cart {
+    background: #dc3545;
+    color: white;
+    border: none;
+}
+
+#navbarSupportedContent .btn-cart:hover {
+    background: #c82333;
+    box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
+}
+
+/* Hero Section with Slideshow */
+.hero-section {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+    margin-bottom: 50px;
+}
+
+.slideshow-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.slide {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    animation: fadeIn 1s;
+}
+
+.slide.active {
+    display: block;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    z-index: 2;
+}
+
+.hero-overlay h1 {
+    font-size: 56px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+}
+
+.hero-overlay p {
+    font-size: 24px;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+}
+
+.hero-btn {
+    background: #dc3545;
+    color: white;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.hero-btn:hover {
+    background: #c82333;
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(220, 53, 69, 0.4);
+}
+
+/* Slide Navigation */
+.slide-nav {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: flex;
+    gap: 10px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.dot.active {
+    background: white;
+    width: 30px;
+    border-radius: 6px;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Features Section */
+.features {
+    padding: 60px 5rem;
+    background: white;
+}
+
+.features h2 {
+    text-align: center;
+    font-size: 42px;
+    font-weight: 800;
+    color: #333;
+    margin-bottom: 50px;
+}
+
+.feature-card {
+    text-align: center;
+    padding: 30px;
+    border-radius: 15px;
+    transition: all 0.3s;
+    margin-bottom: 30px;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.feature-card i {
+    font-size: 50px;
+    color: #dc3545;
+    margin-bottom: 20px;
+}
+
+.feature-card h3 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.feature-card p {
+    font-size: 16px;
+    color: #666;
+}
+
+/* Product Preview */
+.product-preview {
+    padding: 60px 5rem;
+    background: #f8f9fa;
+}
+
+.product-preview h2 {
+    text-align: center;
+    font-size: 42px;
+    font-weight: 800;
+    color: #333;
+    margin-bottom: 50px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.product-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.product-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.product-info {
+    padding: 20px;
+}
+
+.product-info h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.product-info p {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.product-price {
+    font-size: 24px;
+    font-weight: 800;
+    color: #dc3545;
+    margin-bottom: 15px;
+}
+
+.add-to-cart {
+    width: 100%;
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.add-to-cart:hover {
+    background: #c82333;
+}
+
+/* Footer */
+footer {
+    background: #222;
+    color: white;
+    padding: 40px 5rem;
+    margin-top: 60px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+.footer-section h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #dc3545;
+}
+
+.footer-section p, .footer-section a {
+    color: #aaa;
+    font-size: 14px;
+    line-height: 1.8;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.footer-section a:hover {
+    color: white;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.social-icons a {
+    width: 40px;
+    height: 40px;
+    background: #333;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+.social-icons a:hover {
+    background: #dc3545;
+    transform: translateY(-5px);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #444;
+    color: #aaa;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    #navbar {
+        padding: 0.8rem 2rem;
+    }
+
+    .hero-overlay h1 {
+        font-size: 36px;
+    }
+
+    .hero-overlay p {
+        font-size: 18px;
+    }
+
+    .features, .product-preview {
+        padding: 40px 2rem;
+    }
+
+    footer {
+        padding: 30px 2rem;
+    }
+
+    /* Stack navbar buttons on mobile */
+    #navbarSupportedContent .btn {
+        margin: 5px 0;
+        width: 100%;
+    }
+}

@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - K.K.Y MEAT SHOP & GRILL</title>
+    <link rel="icon" type="image/x-icon" href="KKY LOGO.ico">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Fira Sans", sans-serif;
+        }
+
+        body {
+            background: #f8f9fa;
+        }
+
+        /* Navbar */
+        #navbar {
+            position: sticky;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            padding: 0.8rem 5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            background: white;
+        }
+
+        .navbar .navbar-brand {
+            font-size: 22px;
+            font-weight: 800;
+            color: #dc3545 !important;
+            letter-spacing: 1px;
+        }
+
+        #navbarSupportedContent a {
+            color: #333;
+            font-weight: 500;
+            margin: 0 10px;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        #navbarSupportedContent a:hover {
+            border-bottom: 3px solid #dc3545;
+            color: #dc3545;
+        }
+
+        #navbarSupportedContent .btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 9px;
+            border-radius: 15px;
+            font-weight: 500;
+            transition: all 0.3s;
+            margin-left: 8px;
+            font-size: 12px;
+        }
+
+        #navbarSupportedContent .btn:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(200, 53, 69, 0.3);
+        }
+
+        #navbarSupportedContent .btn-signin {
+            background: white;
+            color: #dc3545;
+            border: 2px solid #dc3545;
+        }
+
+        #navbarSupportedContent .btn-signin:hover {
+            background: #dc3545;
+            color: white;
+        }
+
+        /* Product Section */
+        .product-preview {
+            padding: 60px 5rem;
+            background: #f8f9fa;
+        }
+
+        .product-preview h2 {
+            text-align: center;
+            font-size: 42px;
+            font-weight: 800;
+            color: #333;
+            margin-bottom: 50px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-info h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .product-info p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .product-price {
+            font-size: 24px;
+            font-weight: 800;
+            color: #dc3545;
+            margin-bottom: 15px;
+        }
+
+        .add-to-cart, .buy-now {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            margin-bottom: 10px;
+        }
+
+        .add-to-cart {
+            background: #dc3545;
+            color: white;
+        }
+
+        .add-to-cart:hover {
+            background: #c82333;
+        }
+
+        .buy-now {
+            background: #28a745;
+            color: white;
+        }
+
+        .buy-now:hover {
+            background: #218838;
+        }
+
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            right: -400px;
+            top: 0;
+            width: 400px;
+            height: 100vh;
+            background: white;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.2);
+            z-index: 2000;
+            transition: all 0.3s;
+            overflow-y: auto;
+        }
+
+        .cart-sidebar.active {
+            right: 0;
+        }
+
+        .cart-header {
+            padding: 20px;
+            background: #dc3545;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-header h3 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .cart-items {
+            padding: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 15px;
+            padding: 15px;
+            border-bottom: 1px solid #e0e0e0;
+            margin-bottom: 15px;
+        }
+
+        .cart-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-info h4 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-info p {
+            color: #dc3545;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .remove-item {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .cart-total {
+            padding: 20px;
+            border-top: 2px solid #e0e0e0;
+            background: #f8f9fa;
+        }
+
+        .cart-total h3 {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .checkout-btn:hover {
+            background: #218838;
+        }
+
+        /* Checkout Popup */
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+        }
+
+        .popup-content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .popup-content h3 {
+            color: #dc3545;
+            margin-bottom: 20px;
+            font-size: 28px;
+        }
+
+        .popup-content input, .popup-content textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 2px solid #e0e0e0;
+            font-size: 14px;
+        }
+
+        .popup-content textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .popup-content button {
+            width: 48%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn-confirm {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-cancel {
+            background: #dc3545;
+            color: white;
+        }
+
+        /* Order Success Popup */
+        .order-success {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        .order-success i {
+            font-size: 80px;
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+
+        .order-success h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .tracking-code {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 2px dashed #dc3545;
+        }
+
+        .tracking-code h4 {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .tracking-code .code {
+            font-size: 32px;
+            font-weight: 800;
+            color: #dc3545;
+            letter-spacing: 2px;
+        }
+
+        .track-order-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background: #222;
+            color: white;
+            padding: 40px 5rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+        }
+
+        @media (max-width: 768px) {
+            #navbar, .product-preview, footer {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
+            .cart-sidebar {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            updateNavbar();
+        });
+    
+        function updateNavbar() {
+            const isLoggedIn = localStorage.getItem('kkyUserSession') === 'true';
+            const userData = JSON.parse(localStorage.getItem('kkyUser') || '{}');
+            
+            const navbarButtons = document.querySelector('#navbarSupportedContent');
+            if (!navbarButtons) return;
+            
+            const cartBtn = navbarButtons.querySelector('.btn-cart');
+            const existingButtons = navbarButtons.querySelectorAll('.btn-signin, .btn-signup, .btn-profile');
+            existingButtons.forEach(btn => btn.remove());
+            
+            if (isLoggedIn && userData.fullName) {
+                const profileBtn = document.createElement('button');
+                profileBtn.className = 'btn btn-profile';
+                profileBtn.innerHTML = `<i class="fas fa-user"></i> ${userData.fullName.split(' ')[0]}`;
+                profileBtn.onclick = function() {
+                    window.location.href = 'profile.html';
+                };
+                navbarButtons.insertBefore(profileBtn, cartBtn);
+            } else {
+                const signInBtn = document.createElement('button');
+                signInBtn.className = 'btn btn-signin';
+                signInBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Sign In';
+                signInBtn.onclick = function() {
+                    window.location.href = 'signin.html';
+                };
+                
+                const signUpBtn = document.createElement('button');
+                signUpBtn.className = 'btn btn-signup';
+                signUpBtn.innerHTML = '<i class="fas fa-user-plus"></i> Sign Up';
+                signUpBtn.onclick = function() {
+                    window.location.href = 'signup.html';
+                };
+                
+                navbarButtons.insertBefore(signInBtn, cartBtn);
+                navbarButtons.insertBefore(signUpBtn, cartBtn);
+            }
+        }
+    </script>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light" id="navbar">
+        <a class="navbar-brand" href="index.html">
+            <i class="fas fa-drumstick-bite"></i> THE K.K.Y MEAT SHOP & GRILL
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="products.html">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="promotion.html">Promotions</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="track.html">Track</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+                <button class="btn btn-profile" onclick="window.location.href='profile.html'">
+                    <i class="fas fa-user"></i> Profile
+                </button>
+            </ul>
+            <button class="btn btn-signin" onclick="window.location.href='signin.html'">
+                <i class="fas fa-sign-in-alt"></i> Sign In
+            </button>
+            <button class="btn btn-cart" onclick="toggleCart()">
+                <i class="fas fa-shopping-cart"></i> Cart (<span id="cartCount">0</span>)
+            </button>
+        </div>
+    </nav>
+
+    <!-- Products -->
+    <section class="product-preview">
+        <h2>Our Premium Products</h2>
+        <div class="product-grid">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <img src="beef thajima.jpg" alt="Wagyu Beef">
+                <div class="product-info">
+                    <h3>Wagyu Beef Striploin MB 7-8</h3>
+                    <p>Premium marbled Japanese Wagyu beef</p>
+                    <div class="product-price">LKR 8,500/kg</div>
+                    <button class="add-to-cart" onclick="addToCart('Wagyu Beef Striploin MB 7-8', 8500, 'beef thajima.jpg')">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </button>
+                    <button class="buy-now" onclick="buyNow('Wagyu Beef Striploin MB 7-8', 8500, 'beef thajima.jpg')">
+                        <i class="fas fa-bolt"></i> Buy Now
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+                <img src="chicken.jpg" alt="Chicken">
+                <div class="product-info">
+                    <h3>Fresh Chicken Breast</h3>
+                    <p>Boneless, skinless chicken breast</p>
+                    <div class="product-price">LKR 1,200/kg</div>
+                    <button class="add-to-cart" onclick="addToCart('Fresh Chicken Breast', 1200, 'chicken.jpg')">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </button>
+                    <button class="buy-now" onclick="buyNow('Fresh Chicken Breast', 1200, 'chicken.jpg')">
+                        <i class="fas fa-bolt"></i> Buy Now
+                    </button>
+                </div>
+            </div>
+
+             <!-- Product 3 -->
+             <div class="product-card">
+                <img src="Minced meat.jpg" alt="Minced Meat">
+                <div class="product-info">
+                    <h3>Fresh Chicken Breast</h3>
+                    <p>Boneless, skinless chicken breast</p>
+                    <div class="product-price">LKR 1,400/kg</div>
+                    <button class="add-to-cart" onclick="addToCart('Fresh Minced Meat', 1400, 'Minced meat.jpg')">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </button>
+                    <button class="buy-now" onclick="buyNow('Fresh Minced Meat', 1400, 'Minced meat.jpg')">
+                        <i class="fas fa-bolt"></i> Buy Now
+                    </button>
+                </div>
+            </div>
+
+             <!-- Product 4 -->
+             <div class="product-card">
+                <img src="Salmon Smoked Norwagian.jpg" alt="Salmon Smoked Norwagian">
+                <div class="product-info">
+                    <h3>Salmon Smoked Norwagian</h3>
+                    <p>Norwegian Smoked Salmon 1/2 by Sable's Smoked Fish Goldbelly</p>
+                    <div class="product-price">LKR 1,800/kg</div>
+                    <button class="add-to-cart" onclick="addToCart('Salmon Smoked Norwagian', 1800, 'Salmon Smoked Norwagian.jpg')">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </button>
+                    <button class="buy-now" onclick="buyNow('Salmon Smoked Norwagian', 1800, 'Salmon Smoked Norwagian.jpg')">
+                        <i class="fas fa-bolt"></i> Buy Now
+                    </button>
+                </div>
+            </div>
+
+             <!-- Product 5 -->
+             <div class="product-card">
+                <img src="fish masala.jpg" alt="fish masala">
+                <div class="product-info">
+                    <h3>Fish Masala Powder</h3>
+                    <p> Coriander, cumin, fennel, black pepper, dry red chili, turmeric, mustard, fenugreek, cloves, cardamom, cinnamon, curry leaves.</p>
+                    <div class="product-price">LKR 550/-   (250kg)</div>
+                    <button class="add-to-cart" onclick="addToCart('Fresh Chicken Breast', 1200, 'chicken.jpg')">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </button>
+                    <button class="buy-now" onclick="buyNow('Fresh Chicken Breast', 1200, 'chicken.jpg')">
+                        <i class="fas fa-bolt"></i> Buy Now
+                    </button>
+                </div>
+            </div>
+
+             <!-- Product 6 -->
+             <div class="product-card">
+                <img src="hokubee melt.jpg" alt="hokubee melt">
+                <div class="product-info">
+                    <h3>Hokubee Melt</h3>
+                    <p>Now at The KKY Meat Shop & Grill! 🥩🤤 . Treat yourself to the ultimate culinary experience.
+                    </p>
+                    <div class="product-price">LKR 3500/-</div>
+                    <button class="add-to-cart" onclick="addToCart('Fresh Chicken Breast', 1200, 'chicken.jpg')">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </button>
+                    <button class="buy-now" onclick="buyNow('Fresh Chicken Breast', 1200, 'chicken.jpg')">
+                        <i class="fas fa-bolt"></i> Buy Now
+                    </button>
+                </div>
+            </div>
+
+             <!-- Product 7 -->
+             <div class="product-card">
+                <img src="jaffna masala.jpg" alt="jaffna masala">
+                <div class="product-info">
+                    <h3>Jaffna Masala Powder</h3>
+                    <p>Coriander, cumin, fennel, pepper, dry chili, fenugreek, mustard, cinnamon, cardamom, cloves, curry leaves, turmeric.</p>
+                    <div class="product-price">LKR 550/-   (250)kg</div>
+                    <button class="add-to-cart" onclick="addToCart('Fresh Chicken Breast', 1200, 'chicken.jpg')">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </button>
+                    <button class="buy-now" onclick="buyNow('Fresh Chicken Breast', 1200, 'chicken.jpg')">
+                        <i class="fas fa-bolt"></i> Buy Now
+                    </button>
+                </div>
+            </div>
+
+             <!-- Product 8 -->
+             <div class="product-card">
+                <img src="kanayan.jpg" alt="kanayan">
+                <div class="product-info">
+                    <h3>kanayan</h3>
+                    <p>Coriander, cumin, fennel, black pepper, dry chili, turmeric, mustard, fenugreek, cinnamon, cardamom, cloves, curry leaves.</p>
+                    <div class="product-price">LKR 280/-  100g</div>
+                    <button class="add-to-cart" onclick="addToCart('Fresh Chicken Breast', 1200, 'chicken.jpg')">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </button>
+                    <button class="buy-now" onclick="buyNow('Fresh Chicken Breast', 1200, 'chicken.jpg')">
+                        <i class="fas fa-bolt"></i> Buy Now
+                    </button>
+                </div>
+            </div> 
+
+             <!-- Product 9 -->
+             <div class="product-card">
+                <img src="katta para samblo.jpg" alt="katta para samblo">
+                <div class="product-info">
+                    <h3>katta para samblo</h3>
+                    <p> Chili flakes, onion, Maldive fish, lime juice, salt, and oil.</p>
+                    <div class="product-price">LKR 1,250/-  250g</div>
+                    <button class="add-to-cart" onclick="addToCart('Fresh Chicken Breast', 1200, 'chicken.jpg')">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </button>
+                    <button class="buy-now" onclick="buyNow('Fresh Chicken Breast', 1200, 'chicken.jpg')">
+                        <i class="fas fa-bolt"></i> Buy Now
+                    </button>
+                </div>
+            </div> 
+
+             <!-- Product 10 -->
+             <div class="product-card">
+                <img src="kawa tea.jpg" alt="kawa tea.">
+                <div class="product-info">
+                    <h3>Kawa Tea</h3>
+                    <p>Green tea, cardamom, cinnamon, cloves, saffron, almonds, and honey.</p>
+                    <div class="product-price">LKR 320/-  (50)g</div>
+                    <button class="add-to-cart" onclick="addToCart('Fresh Chicken Breast', 1200, 'chicken.jpg')">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </button>
+                    <button class="buy-now" onclick="buyNow('Fresh Chicken Breast', 1200, 'chicken.jpg')">
+                        <i class="fas fa-bolt"></i> Buy Now
+                    </button>
+                </div>
+            </div>
+
+             <!-- Product 11 -->
+             <div class="product-card">
+                <img src="maasi sambol.jpg" alt="maasi sambo">
+                <div class="product-info">
+                    <h3>Maasi Sambo</h3>    
+                    <p> Dried fish, onion, chili, garlic, lime juice, salt, and oil.</p>
+                    <div class="product-price">LKR 980/-  (250)g</div>
+                    <button class="add-to-cart" onclick="addToCart('Fresh Chicken Breast', 1200, 'chicken.jpg')">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </button>
+                    <button class="buy-now" onclick="buyNow('Fresh Chicken Breast', 1200, 'chicken.jpg')">
+                        <i class="fas fa-bolt"></i> Buy Now
+                    </button>
+                </div>
+            </div>
+
+             <!-- Product 12 -->
+             <div class="product-card">
+                <img src="meat masala powder.jpg" alt="meat masala powder">
+                <div class="product-info">
+                    <h3>Meat Masala Powder</h3>
+                    <p> Coriander, cumin, fennel, black pepper, dry chili, cloves, cardamom, cinnamon, turmeric, fenugreek, mustard, curry leaves.</p>
+                    <div class="product-price">LKR 650/- (250)g</div>
+                    <button class="add-to-cart" onclick="addToCart('Fresh Chicken Breast', 1200, 'chicken.jpg')">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </button>
+                    <button class="buy-now" onclick="buyNow('Fresh Chicken Breast', 1200, 'chicken.jpg')">
+                        <i class="fas fa-bolt"></i> Buy Now
+                    </button>
+                </div>
+            </div>
+
+             <!-- Product 13 -->
+             <div class="product-card">
+                <img src="Minced meat.jpg" alt="Minced meat">
+                <div class="product-info">
+                    <h3>Minced Meat</h3>
+                    <p>Fresh minced meat for the perfect Iftar rolls! 🌙✨ Order now and make every bite delicious.
+                    </p>
+                    <div class="product-price">LKR 2800/kg</div>
+                    <button class="add-to-cart" onclick="addToCart('Fresh Chicken Breast', 1200, 'chicken.jpg')">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </button>
+                    <button class="buy-now" onclick="buyNow('Fresh Chicken Breast', 1200, 'chicken.jpg')">
+                        <i class="fas fa-bolt"></i> Buy Now
+                    </button>
+                </div>
+            </div>
+
+             <!-- Product 14 -->
+             <div class="product-card">
+                <img src="mix masala powder.jpg" alt="mix masala powder">
+                <div class="product-info">
+                    <h3>Mix Masala Powder</h3>
+                    <p> Coriander, cumin, fennel, black pepper, dry chili, cloves, cardamom, cinnamon, turmeric, mustard, fenugreek, curry leaves.</p>
+                    <div class="product-price">LKR 550/  (250)g</div>
+                    <button class="add-to-cart" onclick="addToCart('Fresh Chicken Breast', 1200, 'chicken.jpg')">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </button>
+                    <button class="buy-now" onclick="buyNow('Fresh Chicken Breast', 1200, 'chicken.jpg')">
+                        <i class="fas fa-bolt"></i> Buy Now
+                    </button>
+                </div>
+            </div>
+
+             <!-- Product 15 -->
+             <div class="product-card">
+                <img src="prawan sampol.jpg" alt="prawan sampol">
+                <div class="product-info">
+                    <h3>Prawan Sampol</h3>
+                    <p> Prawns, onion, chili, garlic, lime juice, salt, oil, and Maldive fish (optional).</p>
+                    <div class="product-price">LKR 1,050/-  (250)g</div>
+                    <button class="add-to-cart" onclick="addToCart('Fresh Chicken Breast', 1200, 'chicken.jpg')">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </button>
+                    <button class="buy-now" onclick="buyNow('Fresh Chicken Breast', 1200, 'chicken.jpg')">
+                        <i class="fas fa-bolt"></i> Buy Now
+                    </button>
+                </div>
+            </div>
+
+             <!-- Product 16 -->
+             <div class="product-card">
+                <img src="smoked janese.jpg" alt="smoked janese">
+                <div class="product-info">
+                    <h3>Smoked Janese Fish (GOLDEN)</h3>
+                    <p> Fish, salt, sugar, soy sauce, garlic, ginger, oil, and wood chips for smoking.</p>
+                    <div class="product-price">LKR 310/- (100)g</div>
+                    <button class="add-to-cart" onclick="addToCart('Fresh Chicken Breast', 1200, 'chicken.jpg')">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </button>
+                    <button class="buy-now" onclick="buyNow('Fresh Chicken Breast', 1200, 'chicken.jpg')">
+                        <i class="fas fa-bolt"></i> Buy Now
+                    </button>
+                </div>
+            </div>
+
+             <!-- Product 17 -->
+             <div class="product-card">
+                <img src="smoked sungan.jpg" alt="smoked sungan">
+                <div class="product-info">
+                    <h3>smoked sungan</h3>
+                    <p>Small fish, salt, turmeric, chili, oil, and wood chips for smoking.</p>
+                    <div class="product-price">LKR 420/- (100)g</div>
+                    <button class="add-to-cart" onclick="addToCart('Fresh Chicken Breast', 1200, 'chicken.jpg')">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </button>
+                    <button class="buy-now" onclick="buyNow('Fresh Chicken Breast', 1200, 'chicken.jpg')">
+                        <i class="fas fa-bolt"></i> Buy Now
+                    </button>
+                </div>
+            </div>
+
+             <!-- Product 18 -->
+             <div class="product-card">
+                <img src="smoked viral fish.jpg" alt="smoked viral fish">
+                <div class="product-info">
+                    <h3>smoked viral fish</h3>
+                    <p>Viral fish, salt, turmeric, chili, oil, and wood chips for smoking</p>
+                    <div class="product-price">LKR 420/-  (100)g</div>
+                    <button class="add-to-cart" onclick="addToCart('Fresh Chicken Breast', 1200, 'chicken.jpg')">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </button>
+                    <button class="buy-now" onclick="buyNow('Fresh Chicken Breast', 1200, 'chicken.jpg')">
+                        <i class="fas fa-bolt"></i> Buy Now
+                    </button>
+                </div>
+            </div>
+
+             <!-- Product 19 -->
+             <div class="product-card">
+                <img src="Wagyu Beef Striploin MB 7-8.jpg" alt="Wagyu Beef Striploin MB 7-8">
+                <div class="product-info">
+                    <h3>Wagyu Beef Striploin MB 7-8</h3>
+                    <p>Wagyu beef, salt, black pepper, garlic, olive oil or butter, and fresh herbs (optional).</p>
+                    <div class="product-price">LKR 4000/-</div>
+                    <button class="add-to-cart" onclick="addToCart('Fresh Chicken Breast', 1200, 'chicken.jpg')">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </button>
+                    <button class="buy-now" onclick="buyNow('Fresh Chicken Breast', 1200, 'chicken.jpg')">
+                        <i class="fas fa-bolt"></i> Buy Now
+                    </button>
+                </div>
+            </div>
+
+             <!-- Product 20 -->
+             <div class="product-card">
+                <img src="Scallops King Size..jpg" alt="Scallops King Size">
+                <div class="product-info">
+                    <h3>Fresh Chicken Breast</h3>
+                    <p>King-size scallops, salt, black pepper, lemon juice, butter or olive oil, garlic, and fresh herbs.
+                    </p>
+                    </p>
+                    <div class="product-price">LKR 1,200/-</div>
+                    <button class="add-to-cart" onclick="addToCart('Fresh Chicken Breast', 1200, 'chicken.jpg')">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </button>
+                    <button class="buy-now" onclick="buyNow('Fresh Chicken Breast', 1200, 'chicken.jpg')">
+                        <i class="fas fa-bolt"></i> Buy Now
+                    </button>
+                </div>
+            </div>
+
+             <!-- Product 2 -->
+             <div class="product-card">
+                <img src="chicken.jpg" alt="Chicken">
+                <div class="product-info">
+                    <h3>Fresh Chicken Breast</h3>
+                    <p>Boneless, skinless chicken breast</p>
+                    <div class="product-price">LKR 1,200/kg</div>
+                    <button class="add-to-cart" onclick="addToCart('Fresh Chicken Breast', 1200, 'chicken.jpg')">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </button>
+                    <button class="buy-now" onclick="buyNow('Fresh Chicken Breast', 1200, 'chicken.jpg')">
+                        <i class="fas fa-bolt"></i> Buy Now
+                    </button>
+                </div>
+            </div>
+
+             <!-- Product 2 -->
+             <div class="product-card">
+                <img src="chicken.jpg" alt="Chicken">
+                <div class="product-info">
+                    <h3>Fresh Chicken Breast</h3>
+                    <p>Boneless, skinless chicken breast</p>
+                    <div class="product-price">LKR 1,200/kg</div>
+                    <button class="add-to-cart" onclick="addToCart('Fresh Chicken Breast', 1200, 'chicken.jpg')">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </button>
+                    <button class="buy-now" onclick="buyNow('Fresh Chicken Breast', 1200, 'chicken.jpg')">
+                        <i class="fas fa-bolt"></i> Buy Now
+                    </button>
+                </div>
+            </div>
+
+
+            <!-- Product  -->
+            <div class="product-card">
+                <img src="lamb.jpg" alt="Lamb">
+                <div class="product-info">
+                    <h3>Australian Lamb Chops</h3>
+                    <p>Juicy, tender lamb chops</p>
+                    <div class="product-price">LKR 3,200/kg</div>
+                    <button class="add-to-cart" onclick="addToCart('Australian Lamb Chops', 3200, 'lamb.jpg')">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </button>
+                    <button class="buy-now" onclick="buyNow('Australian Lamb Chops', 3200, 'lamb.jpg')">
+                        <i class="fas fa-bolt"></i> Buy Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3><i class="fas fa-shopping-cart"></i> Shopping Cart</h3>
+            <button class="close-cart" onclick="toggleCart()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <p style="text-align: center; color: #999; padding: 40px 0;">Your cart is empty</p>
+        </div>
+        <div class="cart-total">
+            <h3>
+                <span>Total:</span>
+                <span id="cartTotal">LKR 0</span>
+            </h3>
+            <button class="checkout-btn" onclick="checkout()">
+                <i class="fas fa-credit-card"></i> Checkout
+            </button>
+        </div>
+    </div>
+
+    <!-- Checkout Popup -->
+    <div class="popup" id="checkoutPopup">
+        <div class="popup-content">
+            <h3><i class="fas fa-shopping-bag"></i> Complete Your Order</h3>
+            <input type="text" id="customerName" placeholder="Full Name *" required>
+            <input type="tel" id="customerPhone" placeholder="Phone Number *" required>
+            <input type="email" id="customerEmail" placeholder="Email Address *" required>
+            <textarea id="deliveryAddress" placeholder="Delivery Address *" required></textarea>
+            <div style="margin: 20px 0; text-align: left;">
+                <strong>Order Total: <span id="orderTotal" style="color: #dc3545;">LKR 0</span></strong>
+            </div>
+            <button class="btn-confirm" onclick="placeOrder()">
+                <i class="fas fa-check"></i> Place Order
+            </button>
+            <button class="btn-cancel" onclick="closePopup()">
+                <i class="fas fa-times"></i> Cancel
+            </button>
+        </div>
+    </div>
+
+    <!-- Order Success Popup -->
+    <div class="popup" id="successPopup">
+        <div class="order-success">
+            <i class="fas fa-check-circle"></i>
+            <h3>Order Placed Successfully!</h3>
+            <p>Thank you for your order. Your delivery is being prepared.</p>
+            
+            <div class="tracking-code">
+                <h4>Your Tracking Number:</h4>
+                <div class="code" id="trackingNumber">KKY12345</div>
+            </div>
+            
+            <p style="font-size: 14px; color: #666;">
+                Save this number to track your order. You will also receive it via SMS.
+            </p>
+            
+            <button class="track-order-btn" onclick="goToTracking()">
+                <i class="fas fa-map-marker-alt"></i> Track My Order
+            </button>
+            <button class="btn-cancel" style="width: auto; margin-top: 10px;" onclick="closeSuccessPopup()">
+                <i class="fas fa-home"></i> Continue Shopping
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-bottom">
+            <p>&copy; 2025 The K.K.Y Meat Shop & Grill | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        // Cart functionality
+        let cart = [];
+        let currentTrackingNumber = '';
+
+        function addToCart(name, price, image) {
+            const item = {
+                name: name,
+                price: price,
+                image: image,
+                quantity: 1
+            };
+
+            // Check if item already exists
+            const existingItem = cart.find(i => i.name === name);
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push(item);
+            }
+
+            updateCart();
+            alert(`${name} added to cart!`);
+        }
+
+        function buyNow(name, price, image) {
+            cart = [{
+                name: name,
+                price: price,
+                image: image,
+                quantity: 1
+            }];
+            updateCart();
+            checkout();
+        }
+
+        function updateCart() {
+            const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cartCount').textContent = cartCount;
+
+            const cartItemsDiv = document.getElementById('cartItems');
+            if (cart.length === 0) {
+                cartItemsDiv.innerHTML = '<p style="text-align: center; color: #999; padding: 40px 0;">Your cart is empty</p>';
+            } else {
+                cartItemsDiv.innerHTML = cart.map(item => `
+                    <div class="cart-item">
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="cart-item-info">
+                            <h4>${item.name}</h4>
+                            <p>LKR ${item.price.toLocaleString()} × ${item.quantity}kg</p>
+                        </div>
+                        <button class="remove-item" onclick="removeFromCart('${item.name}')">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                `).join('');
+            }
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            document.getElementById('cartTotal').textContent = `LKR ${total.toLocaleString()}`;
+        }
+
+        function removeFromCart(name) {
+            cart = cart.filter(item => item.name !== name);
+            updateCart();
+        }
+
+        function toggleCart() {
+            document.getElementById('cartSidebar').classList.toggle('active');
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Your cart is empty!');
+                return;
+            }
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            document.getElementById('orderTotal').textContent = `LKR ${total.toLocaleString()}`;
+            document.getElementById('checkoutPopup').style.display = 'flex';
+            toggleCart();
+        }
+
+        function closePopup() {
+            document.getElementById('checkoutPopup').style.display = 'none';
+        }
+
+        function generateTrackingNumber() {
+            const prefix = 'KKY';
+            const randomNum = Math.floor(10000 + Math.random() * 90000);
+            return prefix + randomNum;
+        }
+
+        function placeOrder() {
+            const name = document.getElementById('customerName').value;
+            const phone = document.getElementById('customerPhone').value;
+            const email = document.getElementById('customerEmail').value;
+            const address = document.getElementById('deliveryAddress').value;
+
+            if (!name || !phone || !email || !address) {
+                alert('Please fill in all fields!');
+                return;
+            }
+
+            // Generate tracking number
+            currentTrackingNumber = generateTrackingNumber();
+
+            // Create order object
+            const order = {
+                trackingNumber: currentTrackingNumber,
+                customerName: name,
+                phone: phone,
+                email: email,
+                address: address,
+                items: cart,
+                total: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0),
+                date: new Date().toLocaleString(),
+                status: 'Processing'
+            };
+
+            // Save to localStorage (in real app, send to backend)
+            let orders = JSON.parse(localStorage.getItem('kkyOrders') || '[]');
+            orders.push(order);
+            localStorage.setItem('kkyOrders', JSON.stringify(orders));
+
+            // Show success popup
+            document.getElementById('trackingNumber').textContent = currentTrackingNumber;
+            document.getElementById('checkoutPopup').style.display = 'none';
+            document.getElementById('successPopup').style.display = 'flex';
+
+            // Clear cart
+            cart = [];
+            updateCart();
+
+            // Send SMS (simulation)
+            console.log(`SMS sent to ${phone}: Your order ${currentTrackingNumber} has been placed!`);
+        }
+
+        function closeSuccessPopup() {
+            document.getElementById('successPopup').style.display = 'none';
+        }
+
+        function goToTracking() {
+            // Save tracking number to pass to tracking page
+            localStorage.setItem('currentTracking', currentTrackingNumber);
+            window.location.href = 'track.html?order=' + currentTrackingNumber;
+        }
+    </script>
+    
+    <script>
+        // Check if user is logged in on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            updateNavbar();
+        });
+    
+        function updateNavbar() {
+            const isLoggedIn = localStorage.getItem('kkyUserSession') === 'true';
+            const userData = JSON.parse(localStorage.getItem('kkyUser') || '{}');
+            
+            // Find the navbar buttons container
+            const navbarButtons = document.querySelector('#navbarSupportedContent');
+            
+            if (!navbarButtons) return;
+            
+            // Remove existing auth buttons
+            const existingButtons = navbarButtons.querySelectorAll('.btn-signin, .btn-signup, .btn-profile');
+            existingButtons.forEach(btn => btn.remove());
+            
+            if (isLoggedIn && userData.fullName) {
+                // User is logged in - Show Profile button
+                const profileBtn = document.createElement('button');
+                profileBtn.className = 'btn btn-profile';
+                profileBtn.innerHTML = `<i class="fas fa-user"></i> ${userData.fullName.split(' ')[0]}`;
+                profileBtn.onclick = function() {
+                    window.location.href = 'profile.html';
+                };
+                
+                navbarButtons.appendChild(profileBtn);
+            } else {
+                // User not logged in - Show Sign In and Sign Up buttons
+                const signInBtn = document.createElement('button');
+                signInBtn.className = 'btn btn-signin';
+                signInBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Sign In';
+                signInBtn.onclick = function() {
+                    window.location.href = 'signin.html';
+                };
+                
+                const signUpBtn = document.createElement('button');
+                signUpBtn.className = 'btn btn-signup';
+                signUpBtn.innerHTML = '<i class="fas fa-user-plus"></i> Sign Up';
+                signUpBtn.onclick = function() {
+                    window.location.href = 'signup.html';
+                };
+                
+                navbarButtons.appendChild(signInBtn);
+                navbarButtons.appendChild(signUpBtn);
+            }
+        }
+       
+    </script>
+    
+    <!-- Add these CSS styles to the <style> section or style.css -->
+    <style>
+        /* Profile button style */
+        #navbarSupportedContent .btn-profile {
+            background: white;
+            color: #dc3545;
+            border: 2px solid #dc3545;
+            padding: 8px 16px;
+            border-radius: 15px;
+            font-weight: 500;
+            transition: all 0.3s;
+            margin-left: 8px;
+            font-size: 12px;
+        }
+    
+        #navbarSupportedContent .btn-profile:hover {
+            background: #dc3545;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
+        }
+        
+        #navbarSupportedContent .btn-signin {
+            background: white;
+            color: #dc3545;
+            border: 2px solid #dc3545;
+        }
+    
+        #navbarSupportedContent .btn-signin:hover {
+            background: #dc3545;
+            color: white;
+        }
+    
+        #navbarSupportedContent .btn-signup {
+            background: #28a745;
+            color: white;
+            border: 2px solid #28a745;
+        }
+    
+        #navbarSupportedContent .btn-signup:hover {
+            background: #218838;
+            border: 2px solid #218838;
+        }
+
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

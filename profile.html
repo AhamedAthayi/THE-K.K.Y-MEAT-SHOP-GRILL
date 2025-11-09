@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - K.K.Y MEAT SHOP & GRILL</title>
+    <link rel="icon" type="image/x-icon" href="KKY LOGO.ico">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Fira Sans", sans-serif;
+        }
+
+        body {
+            background: #f8f9fa;
+            min-height: 100vh;
+        }
+
+        /* Navbar */
+        #navbar {
+            position: sticky;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            padding: 0.8rem 5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            background: white;
+        }
+
+        .navbar .navbar-brand {
+            font-size: 22px;
+            font-weight: 800;
+            color: #dc3545 !important;
+            letter-spacing: 1px;
+        }
+
+        #navbarSupportedContent a {
+            color: #333;
+            font-weight: 500;
+            margin: 0 10px;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        #navbarSupportedContent a:hover {
+            border-bottom: 3px solid #dc3545;
+            color: #dc3545;
+        }
+
+        #navbarSupportedContent .btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 9px;
+            border-radius: 15px;
+            font-weight: 500;
+            transition: all 0.3s;
+            margin-left: 8px;
+            font-size: 12px;
+        }
+
+        #navbarSupportedContent .btn:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(200, 53, 69, 0.3);
+        }
+
+        #navbarSupportedContent .btn-profile {
+            background: white;
+            color: #dc3545;
+            border: 2px solid #dc3545;
+        }
+
+        #navbarSupportedContent .btn-profile:hover {
+            background: #dc3545;
+            color: white;
+        }
+
+        /* Profile Section */
+        .profile-section {
+            padding: 40px 5rem;
+            min-height: calc(100vh - 200px);
+        }
+
+        .profile-container {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 30px;
+        }
+
+        /* Sidebar */
+        .profile-sidebar {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .profile-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 40px;
+            font-weight: 700;
+            margin: 0 auto 15px;
+            box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
+        }
+
+        .profile-header h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .profile-header p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .profile-menu {
+            list-style: none;
+            padding: 0;
+        }
+
+        .profile-menu li {
+            margin-bottom: 5px;
+        }
+
+        .profile-menu a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            color: #666;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .profile-menu a:hover,
+        .profile-menu a.active {
+            background: #dc3545;
+            color: white;
+        }
+
+        .profile-menu a i {
+            font-size: 18px;
+            width: 20px;
+        }
+
+        .logout-btn {
+            width: 100%;
+            background: white;
+            color: #dc3545;
+            border: 2px solid #dc3545;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+
+        .logout-btn:hover {
+            background: #dc3545;
+            color: white;
+        }
+
+        /* Main Content */
+        .profile-content {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .section-header h2 {
+            font-size: 28px;
+            font-weight: 800;
+            color: #333;
+        }
+
+        /* Dashboard Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            padding: 25px;
+            border-radius: 12px;
+            color: white;
+            text-align: center;
+        }
+
+        .stat-card i {
+            font-size: 40px;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .stat-card h3 {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 5px;
+        }
+
+        .stat-card p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        /* Order History */
+        .order-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s;
+        }
+
+        .order-card:hover {
+            border-color: #dc3545;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .order-number {
+            font-size: 18px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .order-status {
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .order-status.processing {
+            background: #ffc107;
+            color: white;
+        }
+
+        .order-status.delivered {
+            background: #28a745;
+            color: white;
+        }
+
+        .order-status.preparing {
+            background: #17a2b8;
+            color: white;
+        }
+
+        .order-items {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .order-item-tag {
+            background: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .order-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .order-total {
+            font-size: 20px;
+            font-weight: 700;
+            color: #dc3545;
+        }
+
+        .order-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-track, .btn-reorder {
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+        }
+
+        .btn-track {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-track:hover {
+            background: #c82333;
+        }
+
+        .btn-reorder {
+            background: white;
+            color: #dc3545;
+            border: 2px solid #dc3545;
+        }
+
+        .btn-reorder:hover {
+            background: #dc3545;
+            color: white;
+        }
+
+        /* Account Settings Form */
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+            display: block;
+            font-size: 14px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #dc3545;
+            box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .btn-save {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 14px 40px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-save:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
+        }
+
+        /* Address Cards */
+        .address-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .address-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+            position: relative;
+        }
+
+        .address-card.default {
+            border-color: #28a745;
+            background: linear-gradient(to bottom, #28a745 3px, #f8f9fa 3px);
+        }
+
+        .address-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #28a745;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .address-card h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .address-card p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .address-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-edit, .btn-delete {
+            flex: 1;
+            padding: 8px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-edit {
+            background: #dc3545;
+            color: white;
+            border: none;
+        }
+
+        .btn-edit:hover {
+            background: #c82333;
+        }
+
+        .btn-delete {
+            background: white;
+            color: #666;
+            border: 2px solid #e0e0e0;
+        }
+
+        .btn-delete:hover {
+            border-color: #dc3545;
+            color: #dc3545;
+        }
+
+        .btn-add-address {
+            background: white;
+            border: 2px dashed #dc3545;
+            color: #dc3545;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .btn-add-address:hover {
+            background: #dc3545;
+            color: white;
+        }
+
+        .btn-add-address i {
+            font-size: 30px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .empty-state i {
+            font-size: 80px;
+            color: #e0e0e0;
+            margin-bottom: 20px;
+        }
+
+        .empty-state h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .empty-state p {
+            color: #999;
+            margin-bottom: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background: #222;
+            color: white;
+            padding: 40px 5rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .profile-container {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-sidebar {
+                position: relative;
+                top: 0;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #navbar, .profile-section, footer {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
+            .profile-content {
+                padding: 25px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .address-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light" id="navbar">
+        <a class="navbar-brand" href="index.html">
+            <i class="fas fa-drumstick-bite"></i> THE K.K.Y MEAT SHOP & GRILL
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="products.html">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="promotion.html">Promotions</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="track.html">Track</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+            </ul>
+            <button class="btn btn-profile" onclick="window.location.href='profile.html'">
+                <i class="fas fa-user"></i> Profile
+            </button>
+            <button class="btn btn-cart">
+                <i class="fas fa-shopping-cart"></i> Cart (0)
+            </button>
+        </div>
+    </nav>
+
+    <!-- Profile Section -->
+    <section class="profile-section">
+        <div class="profile-container">
+            <!-- Sidebar -->
+            <div class="profile-sidebar">
+                <div class="profile-header">
+                    <div class="profile-avatar" id="userAvatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <h3 id="userName">Ahamed Athayi</h3>
+                    <p id="userEmail">athayiathayi43@gmail.com</p>
+                </div>
+
+                <ul class="profile-menu">
+                    <li>
+                        <a href="#" class="active" onclick="showSection('dashboard')">
+                            <i class="fas fa-home"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="showSection('orders')">
+                            <i class="fas fa-box"></i>
+                            <span>My Orders</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="showSection('account')">
+                            <i class="fas fa-user-cog"></i>
+                            <span>Account Settings</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="showSection('addresses')">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>My Addresses</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" onclick="showSection('security')">
+                            <i class="fas fa-lock"></i>
+                            <span>Security</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+
+            <!-- Main Content -->
+            <div class="profile-content">
+                <!-- Dashboard -->
+                <div id="dashboard" class="content-section active">
+                    <div class="section-header">
+                        <h2><i class="fas fa-home"></i> Dashboard</h2>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <i class="fas fa-box"></i>
+                            <h3 id="totalOrders">13</h3>
+                            <p>Total Orders</p>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-clock"></i>
+                            <h3 id="pendingOrders">2</h3>
+                            <p>Pending Orders</p>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-check-circle"></i>
+                            <h3 id="completedOrders">10</h3>
+                            <p>Completed Orders</p>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-money-bill"></i>
+                            <h3 id="totalSpent">LKR 45K</h3>
+                            <p>Total Spent</p>
+                        </div>
+                    </div>
+
+                    <h3 style="margin-bottom: 20px; font-weight: 700;">Recent Orders</h3>
+                    <div id="recentOrders">
+                        <!-- Orders will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- My Orders -->
+                <div id="orders" class="content-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-box"></i> My Orders</h2>
+                    </div>
+                    <div id="allOrders">
+                        <!-- Orders will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Account Settings -->
+                <div id="account" class="content-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-user-cog"></i> Account Settings</h2>
+                    </div>
+
+                    <form id="accountForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="fullName">Full Name *</label>
+                                <input type="text" id="fullName" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="dob">Date of Birth</label>
+                                <input type="date" id="dob" class="form-control">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn-save">
+                            <i class="fas fa-save"></i> Save Changes
+                        </button>
+                    </form>
+                </div>
+
+                <!-- My Addresses -->
+                <div id="addresses" class="content-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-map-marker-alt"></i> My Addresses</h2>
+                    </div>
+
+                    <div class="address-grid" id="addressGrid">
+                        <!-- Addresses will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Security -->
+                <div id="security" class="content-section">
+                    <div class="section-header">
+                        <h2><i class="fas fa-lock"></i> Security Settings</h2>
+                    </div>
+
+                    <form id="passwordForm">
+                        <div class="form-group">
+                            <label for="currentPassword">Current Password *</label>
+                            <input type="password" id="currentPassword" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="newPassword">New Password *</label>
+                            <input type="password" id="newPassword" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm New Password *</label>
+                            <input type="password" id="confirmPassword" class="form-control" required>
+                        </div>
+
+                        <button type="submit" class="btn-save">
+                            <i class="fas fa-key"></i> Update Password
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-bottom">
+            <p>&copy; 2025 The K.K.Y Meat Shop & Grill | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        // Load user data on page load
+        window.onload = function() {
+            loadUserProfile();
+            loadOrders();
+            loadAddresses();
+        };
+
+        // Show section
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Remove active class from all menu items
+            document.querySelectorAll('.profile-menu a').forEach(link => {
+                link.classList.remove('active');
+            });
+
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+
+            // Add active class to clicked menu item
+            event.target.closest('a').classList.add('active');
+        }
+
+        // Load user profile
+        function loadUserProfile() {
+            // Get user data from localStorage (from sign-up/sign-in)
+            const userData = {
+                fullName: 'John Doe',
+                email: 'john.doe@email.com',
+                phone: '+94 77 123 4567',
+                dob: '1990-01-15'
+            };
+
+            // Update profile display
+            document.getElementById('userName').textContent = userData.fullName;
+            document.getElementById('userEmail').textContent = userData.email;
+            document.getElementById('userAvatar').textContent = userData.fullName.charAt(0);
+
+            // Fill form fields
+            document.getElementById('fullName').value = userData.fullName;
+            document.getElementById('email').value = userData.email;
+            document.getElementById('phone').value = userData.phone;
+            document.getElementById('dob').value = userData.dob;
+        }
+
+        // Load orders
+        function loadOrders() {
+            const orders = JSON.parse(localStorage.getItem('kkyOrders') || '[]');
+            
+            // Update stats
+            document.getElementById('totalOrders').textContent = orders.length;
+            document.getElementById('pendingOrders').textContent = orders.filter(o => o.status !== 'Delivered').length;
+            document.getElementById('completedOrders').textContent = orders.filter(o => o.status === 'Delivered').length;
+            
+            const totalSpent = orders.reduce((sum, o) => sum + o.total, 0);
+            document.getElementById('totalSpent').textContent = `LKR ${(totalSpent / 1000).toFixed(0)}K`;
+
+            // Display orders
+            const ordersHTML = orders.length > 0 ? orders.slice(0, 3).map(order => `
+                <div class="order-card">
+                    <div class="order-header">
+                        <div class="order-number">
+                            <i class="fas fa-hashtag"></i> ${order.trackingNumber}
+                        </div>
+                        <span class="order-status ${order.status.toLowerCase().replace(' ', '-')}">
+                            ${order.status || 'Processing'}
+                        </span>
+                    </div>
+                    <div class="order-items">
+                        ${order.items.map(item => `<span class="order-item-tag">${item.name} (${item.quantity}kg)</span>`).join('')}
+                    </div>
+                    <div class="order-footer">
+                        <div>
+                            <small style="color: #999; display: block;">${order.date}</small>
+                            <div class="order-total">LKR ${order.total.toLocaleString()}</div>
+                        </div>
+                        <div class="order-actions">
+                            <button class="btn-track" onclick="trackOrder('${order.trackingNumber}')">
+                                <i class="fas fa-map-marker-alt"></i> Track
+                            </button>
+                            <button class="btn-reorder">
+                                <i class="fas fa-redo"></i> Reorder
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('') : `
+                <div class="empty-state">
+                    <i class="fas fa-box-open"></i>
+                    <h3>No Orders Yet</h3>
+                    <p>Start shopping to see your orders here</p>
+                    <button class="btn-save" onclick="window.location.href='products.html'">
+                        <i class="fas fa-shopping-bag"></i> Shop Now
+                    </button>
+                </div>
+            `;
+
+            document.getElementById('recentOrders').innerHTML = ordersHTML;
+            document.getElementById('allOrders').innerHTML = orders.length > 0 ? 
+                orders.map(order => ordersHTML).join('') : ordersHTML;
+        }
+
+        // Load addresses
+        function loadAddresses() {
+            const addresses = [
+                {
+                    id: 1,
+                    title: 'Home',
+                    address: 'No. 123, Galle Road, Colombo 03, Sri Lanka',
+                    default: true
+                },
+                {
+                    id: 2,
+                    title: 'Office',
+                    address: 'No. 456, Union Place, Colombo 02, Sri Lanka',
+                    default: false
+                }
+            ];
+
+            const addressesHTML = addresses.map(addr => `
+                <div class="address-card ${addr.default ? 'default' : ''}">
+                    ${addr.default ? '<span class="address-badge">Default</span>' : ''}
+                    <h4><i class="fas fa-${addr.title === 'Home' ? 'home' : 'building'}"></i> ${addr.title}</h4>
+                    <p>${addr.address}</p>
+                    <div class="address-actions">
+                        <button class="btn-edit" onclick="editAddress(${addr.id})">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                        <button class="btn-delete" onclick="deleteAddress(${addr.id})">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </div>
+                </div>
+            `).join('') + `
+                <div class="btn-add-address" onclick="addNewAddress()">
+                    <i class="fas fa-plus-circle"></i>
+                    <div>Add New Address</div>
+                </div>
+            `;
+
+            document.getElementById('addressGrid').innerHTML = addressesHTML;
+        }
+
+        // Track order
+        function trackOrder(trackingNumber) {
+            window.location.href = `track.html?order=${trackingNumber}`;
+        }
+
+        // Account form submission
+        document.getElementById('accountForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const userData = {
+                fullName: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                dob: document.getElementById('dob').value
+            };
+
+            // Save to localStorage
+            localStorage.setItem('kkyUser', JSON.stringify(userData));
+            
+            // Update profile display
+            document.getElementById('userName').textContent = userData.fullName;
+            document.getElementById('userEmail').textContent = userData.email;
+            document.getElementById('userAvatar').textContent = userData.fullName.charAt(0);
+
+            alert('Account settings updated successfully!');
+        });
+
+        // Password form submission
+        document.getElementById('passwordForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const currentPassword = document.getElementById('currentPassword').value;
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (newPassword !== confirmPassword) {
+                alert('New passwords do not match!');
+                return;
+            }
+
+            if (newPassword.length < 8) {
+                alert('Password must be at least 8 characters long!');
+                return;
+            }
+
+            // In real application, send to backend
+            alert('Password updated successfully!');
+            
+            // Clear form
+            document.getElementById('passwordForm').reset();
+        });
+
+        // Add new address
+        function addNewAddress() {
+            const address = prompt('Enter new address:');
+            if (address) {
+                alert('Address added successfully!');
+                // Reload addresses
+                loadAddresses();
+            }
+        }
+
+        // Edit address
+        function editAddress(id) {
+            const newAddress = prompt('Enter updated address:');
+            if (newAddress) {
+                alert('Address updated successfully!');
+                loadAddresses();
+            }
+        }
+
+        // Delete address
+        function deleteAddress(id) {
+            if (confirm('Are you sure you want to delete this address?')) {
+                alert('Address deleted successfully!');
+                loadAddresses();
+            }
+        }
+
+        // Logout
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                // Clear user session
+                localStorage.removeItem('kkyUserSession');
+                
+                // Redirect to home page
+                alert('Logged out successfully!');
+                window.location.href = 'index.html';
+            }
+        }
+    </script>
+    
+    <script>
+        // Check if user is logged in on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            updateNavbar();
+        });
+    
+        function updateNavbar() {
+            const isLoggedIn = localStorage.getItem('kkyUserSession') === 'true';
+            const userData = JSON.parse(localStorage.getItem('kkyUser') || '{}');
+            
+            // Find the navbar buttons container
+            const navbarButtons = document.querySelector('#navbarSupportedContent');
+            
+            if (!navbarButtons) return;
+            
+            // Remove existing auth buttons
+            const existingButtons = navbarButtons.querySelectorAll('.btn-signin, .btn-signup, .btn-profile');
+            existingButtons.forEach(btn => btn.remove());
+            
+            if (isLoggedIn && userData.fullName) {
+                // User is logged in - Show Profile button
+                const profileBtn = document.createElement('button');
+                profileBtn.className = 'btn btn-profile';
+                profileBtn.innerHTML = `<i class="fas fa-user"></i> ${userData.fullName.split(' ')[0]}`;
+                profileBtn.onclick = function() {
+                    window.location.href = 'profile.html';
+                };
+                
+                navbarButtons.appendChild(profileBtn);
+            } else {
+                // User not logged in - Show Sign In and Sign Up buttons
+                const signInBtn = document.createElement('button');
+                signInBtn.className = 'btn btn-signin';
+                signInBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Sign In';
+                signInBtn.onclick = function() {
+                    window.location.href = 'signin.html';
+                };
+                
+                const signUpBtn = document.createElement('button');
+                signUpBtn.className = 'btn btn-signup';
+                signUpBtn.innerHTML = '<i class="fas fa-user-plus"></i> Sign Up';
+                signUpBtn.onclick = function() {
+                    window.location.href = 'signup.html';
+                };
+                
+                navbarButtons.appendChild(signInBtn);
+                navbarButtons.appendChild(signUpBtn);
+            }
+        }
+    </script>
+    
+    <!-- Add these CSS styles to the <style> section or style.css -->
+    <style>
+        /* Profile button style */
+        #navbarSupportedContent .btn-profile {
+            background: white;
+            color: #dc3545;
+            border: 2px solid #dc3545;
+            padding: 8px 16px;
+            border-radius: 15px;
+            font-weight: 500;
+            transition: all 0.3s;
+            margin-left: 8px;
+            font-size: 12px;
+        }
+    
+        #navbarSupportedContent .btn-profile:hover {
+            background: #dc3545;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
+        }
+        
+        #navbarSupportedContent .btn-signin {
+            background: white;
+            color: #dc3545;
+            border: 2px solid #dc3545;
+        }
+    
+        #navbarSupportedContent .btn-signin:hover {
+            background: #dc3545;
+            color: white;
+        }
+    
+        #navbarSupportedContent .btn-signup {
+            background: #28a745;
+            color: white;
+            border: 2px solid #28a745;
+        }
+    
+        #navbarSupportedContent .btn-signup:hover {
+            background: #218838;
+            border: 2px solid #218838;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

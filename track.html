@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Order - K.K.Y MEAT SHOP & GRILL</title>
+    <link rel="icon" type="image/x-icon" href="KKY LOGO.ico">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Fira Sans", sans-serif;
+        }
+
+        body {
+            background: #f8f9fa;
+        }
+
+        #navbar {
+            position: sticky;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            padding: 0.8rem 5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            background: white;
+        }
+
+        .navbar .navbar-brand {
+            font-size: 22px;
+            font-weight: 800;
+            color: #dc3545 !important;
+            letter-spacing: 1px;
+        }
+
+        #navbarSupportedContent a {
+            color: #333;
+            font-weight: 500;
+            margin: 0 10px;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        #navbarSupportedContent a:hover {
+            border-bottom: 3px solid #dc3545;
+            color: #dc3545;
+        }
+
+        #navbarSupportedContent .btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 9px;
+            border-radius: 15px;
+            font-weight: 500;
+            transition: all 0.3s;
+            margin-left: 8px;
+            font-size: 12px;
+        }
+
+        #navbarSupportedContent .btn:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(200, 53, 69, 0.3);
+        }
+
+        #navbarSupportedContent .btn-signin {
+            background: white;
+            color: #dc3545;
+            border: 2px solid #dc3545;
+        }
+
+        #navbarSupportedContent .btn-signin:hover {
+            background: #dc3545;
+            color: white;
+        }
+
+        .tracking-section {
+            padding: 60px 5rem;
+            min-height: calc(100vh - 200px);
+        }
+
+        .tracking-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .tracking-header h1 {
+            font-size: 42px;
+            font-weight: 800;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .tracking-header p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .search-box {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #dc3545;
+        }
+
+        .search-box button {
+            width: 100%;
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .search-box button:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
+        }
+
+        .tracking-results {
+            display: none;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .order-info {
+            padding: 30px;
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            color: white;
+        }
+
+        .order-info h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-item i {
+            font-size: 20px;
+        }
+
+        .info-item div strong {
+            display: block;
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        .info-item div span {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .order-items {
+            padding: 30px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .order-items h4 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .item-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .item-name {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .item-qty {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .status-timeline {
+            padding: 40px;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 50px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #e0e0e0;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-bottom: 30px;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .timeline-icon {
+            position: absolute;
+            left: -37px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: white;
+            border: 3px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            font-size: 18px;
+        }
+
+        .timeline-item.active .timeline-icon {
+            background: #dc3545;
+            border-color: #dc3545;
+            color: white;
+            animation: pulse 2s infinite;
+        }
+
+        .timeline-item.completed .timeline-icon {
+            background: #28a745;
+            border-color: #28a745;
+            color: white;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7); }
+            50% { box-shadow: 0 0 0 10px rgba(220, 53, 69, 0); }
+        }
+
+        .timeline-content h4 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .timeline-content p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .timeline-content .time {
+            color: #999;
+            font-size: 12px;
+        }
+
+        .live-map {
+            padding: 40px;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .live-map h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .live-map h3 .live-indicator {
+            width: 12px;
+            height: 12px;
+            background: #28a745;
+            border-radius: 50%;
+            animation: blink 1.5s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .map-container {
+            width: 100%;
+            height: 400px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .driver-info {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .driver-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #dc3545;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .driver-details {
+            flex: 1;
+        }
+
+        .driver-details h4 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .driver-details p {
+            color: #666;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .contact-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .contact-btn:hover {
+            background: #218838;
+        }
+
+        footer {
+            background: #222;
+            color: white;
+            padding: 40px 5rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+        }
+
+        @media (max-width: 768px) {
+            #navbar, .tracking-section, footer {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
+            .tracking-header h1 {
+                font-size: 32px;
+            }
+
+            .search-box {
+                padding: 30px 20px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light" id="navbar">
+        <a class="navbar-brand" href="index.html">
+            <i class="fas fa-drumstick-bite"></i> THE K.K.Y MEAT SHOP & GRILL
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="products.html">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="promotion.html">Promotions</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="track.html">Track</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+            </ul>
+            <button class="btn btn-signin" onclick="window.location.href='signin.html'">
+                <i class="fas fa-sign-in-alt"></i> Sign In
+            </button>
+            <button class="btn btn-cart" onclick="window.location.href='products.html'">
+                <i class="fas fa-shopping-cart"></i> Shop Now
+            </button>
+        </div>
+    </nav>
+
+    <section class="tracking-section">
+        <div class="tracking-header">
+            <h1><i class="fas fa-map-marker-alt"></i> Track Your Order</h1>
+            <p>Enter your tracking number to see real-time delivery status</p>
+        </div>
+
+        <div class="search-box">
+            <input type="text" id="orderNumber" placeholder="Enter Tracking Number (e.g., KKY12345)" maxlength="20">
+            <button onclick="trackOrder()">
+                <i class="fas fa-search"></i> Track Order
+            </button>
+        </div>
+
+        <div class="tracking-results" id="trackingResults">
+            <div class="order-info">
+                <h3><i class="fas fa-receipt"></i> Order Details</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <i class="fas fa-hashtag"></i>
+                        <div>
+                            <strong>Tracking Number</strong>
+                            <span id="displayOrderNumber">-</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-calendar"></i>
+                        <div>
+                            <strong>Order Date</strong>
+                            <span id="orderDate">-</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-user"></i>
+                        <div>
+                            <strong>Customer Name</strong>
+                            <span id="customerName">-</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-money-bill"></i>
+                        <div>
+                            <strong>Total Amount</strong>
+                            <span id="totalAmount">-</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="order-items">
+                <h4><i class="fas fa-box-open"></i> Order Items</h4>
+                <div class="item-list" id="itemList"></div>
+            </div>
+
+            <div class="status-timeline">
+                <div class="timeline">
+                    <div class="timeline-item completed">
+                        <div class="timeline-icon">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h4>Order Placed</h4>
+                            <p>Your order has been received and confirmed</p>
+                            <span class="time" id="time1">-</span>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item completed">
+                        <div class="timeline-icon">
+                            <i class="fas fa-box"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h4>Order Preparing</h4>
+                            <p>We're carefully preparing your premium meats</p>
+                            <span class="time" id="time2">-</span>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item active">
+                        <div class="timeline-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h4>Out for Delivery</h4>
+                            <p>Your order is on the way to your location</p>
+                            <span class="time" id="time3">-</span>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h4>Delivered</h4>
+                            <p>Your order will be delivered soon</p>
+                            <span class="time">Estimated: 30-45 mins</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="live-map">
+                <h3>
+                    <span class="live-indicator"></span>
+                    Live Driver Location
+                </h3>
+                <div class="map-container">
+                    <iframe 
+                        width="100%" 
+                        height="100%" 
+                        frameborder="0" 
+                        style="border:0"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.2179166856544!2d79.86255!3d6.8648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwNTEnNTMuMyJOIDc5wrA1MSc0NS4yIkU!5e0!3m2!1sen!2slk!4v1234567890" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+
+                <div class="driver-info">
+                    <div class="driver-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="driver-details">
+                        <h4 id="driverName">Mohamed Rizwan</h4>
+                        <p><i class="fas fa-motorcycle"></i> Vehicle: Bike - LK ABC-1234</p>
+                        <p><i class="fas fa-star"></i> Rating: 4.9/5.0 (250 deliveries)</p>
+                    </div>
+                    <button class="contact-btn" onclick="contactDriver()">
+                        <i class="fas fa-phone"></i> Contact Driver
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-bottom">
+            <p>&copy; 2025 The K.K.Y Meat Shop & Grill | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        // Check if tracking number was passed from products page
+        window.onload = function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const orderNum = urlParams.get('order');
+            if (orderNum) {
+                document.getElementById('orderNumber').value = orderNum;
+                trackOrder();
+            }
+        };
+
+        function trackOrder() {
+            const orderNumber = document.getElementById('orderNumber').value.toUpperCase().trim();
+            
+            if (!orderNumber) {
+                alert('Please enter a tracking number');
+                return;
+            }
+
+            // Get orders from localStorage
+            const orders = JSON.parse(localStorage.getItem('kkyOrders') || '[]');
+            const order = orders.find(o => o.trackingNumber === orderNumber);
+
+            if (!order) {
+                alert('Order not found! Please check your tracking number.');
+                return;
+            }
+
+            // Display order details
+            document.getElementById('displayOrderNumber').textContent = order.trackingNumber;
+            document.getElementById('orderDate').textContent = order.date;
+            document.getElementById('customerName').textContent = order.customerName;
+            document.getElementById('totalAmount').textContent = `LKR ${order.total.toLocaleString()}`;
+
+            // Display order items
+            const itemListHTML = order.items.map(item => `
+                <div class="item">
+                    <div>
+                        <div class="item-name">${item.name}</div>
+                        <div class="item-qty">${item.quantity}kg × LKR ${item.price.toLocaleString()}</div>
+                    </div>
+                    <div class="item-name">LKR ${(item.quantity * item.price).toLocaleString()}</div>
+                </div>
+            `).join('');
+            document.getElementById('itemList').innerHTML = itemListHTML;
+
+            // Set timeline times
+            const orderDate = new Date(order.date);
+            document.getElementById('time1').textContent = order.date;
+            
+            const time2 = new Date(orderDate.getTime() + 15 * 60000); // +15 mins
+            document.getElementById('time2').textContent = time2.toLocaleString();
+            
+            const time3 = new Date(orderDate.getTime() + 30 * 60000); // +30 mins
+            document.getElementById('time3').textContent = time3.toLocaleString() + ' (Now)';
+
+            // Show results
+            document.getElementById('trackingResults').style.display = 'block';
+
+            // Smooth scroll
+            document.getElementById('trackingResults').scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'start' 
+            });
+        }
+
+        function contactDriver() {
+            const phone = '074 068 9243';
+            if (confirm(`Call driver?\n\nPhone: ${phone}`)) {
+                window.location.href = `tel:${phone}`;
+            }
+        }
+
+        // Allow Enter key
+        document.getElementById('orderNumber').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                trackOrder();
+            }
+        });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+<script>
+    // Check if user is logged in on page load
+    window.addEventListener('DOMContentLoaded', function() {
+        updateNavbar();
+    });
+
+    function updateNavbar() {
+        const isLoggedIn = localStorage.getItem('kkyUserSession') === 'true';
+        const userData = JSON.parse(localStorage.getItem('kkyUser') || '{}');
+        
+        // Find the navbar buttons container
+        const navbarButtons = document.querySelector('#navbarSupportedContent');
+        
+        if (!navbarButtons) return;
+        
+        // Remove existing auth buttons
+        const existingButtons = navbarButtons.querySelectorAll('.btn-signin, .btn-signup, .btn-profile');
+        existingButtons.forEach(btn => btn.remove());
+        
+        if (isLoggedIn && userData.fullName) {
+            // User is logged in - Show Profile button
+            const profileBtn = document.createElement('button');
+            profileBtn.className = 'btn btn-profile';
+            profileBtn.innerHTML = `<i class="fas fa-user"></i> ${userData.fullName.split(' ')[0]}`;
+            profileBtn.onclick = function() {
+                window.location.href = 'profile.html';
+            };
+            
+            navbarButtons.appendChild(profileBtn);
+        } else {
+            // User not logged in - Show Sign In and Sign Up buttons
+            const signInBtn = document.createElement('button');
+            signInBtn.className = 'btn btn-signin';
+            signInBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Sign In';
+            signInBtn.onclick = function() {
+                window.location.href = 'signin.html';
+            };
+            
+            const signUpBtn = document.createElement('button');
+            signUpBtn.className = 'btn btn-signup';
+            signUpBtn.innerHTML = '<i class="fas fa-user-plus"></i> Sign Up';
+            signUpBtn.onclick = function() {
+                window.location.href = 'signup.html';
+            };
+            
+            navbarButtons.appendChild(signInBtn);
+            navbarButtons.appendChild(signUpBtn);
+        }
+    }
+</script>
+
+<!-- Add these CSS styles to the <style> section or style.css -->
+<style>
+    /* Profile button style */
+    #navbarSupportedContent .btn-profile {
+        background: white;
+        color: #dc3545;
+        border: 2px solid #dc3545;
+        padding: 8px 16px;
+        border-radius: 15px;
+        font-weight: 500;
+        transition: all 0.3s;
+        margin-left: 8px;
+        font-size: 12px;
+    }
+
+    #navbarSupportedContent .btn-profile:hover {
+        background: #dc3545;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
+    }
+    
+    #navbarSupportedContent .btn-signin {
+        background: white;
+        color: #dc3545;
+        border: 2px solid #dc3545;
+    }
+
+    #navbarSupportedContent .btn-signin:hover {
+        background: #dc3545;
+        color: white;
+    }
+
+    #navbarSupportedContent .btn-signup {
+        background: #28a745;
+        color: white;
+        border: 2px solid #28a745;
+    }
+
+    #navbarSupportedContent .btn-signup:hover {
+        background: #218838;
+        border: 2px solid #218838;
+    }
+</style>

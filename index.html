@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE K.K.Y MEAT SHOP & GRILL</title>
+    <link rel="icon" type="image/x-icon" href="KKY LOGO.ico">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+</head>
+<body>
+    <script>
+        window.addEventListener('DOMContentLoaded', function() {
+            updateNavbar();
+        });
+    
+        function updateNavbar() {
+            const isLoggedIn = localStorage.getItem('kkyUserSession') === 'true';
+            const userData = JSON.parse(localStorage.getItem('kkyUser') || '{}');
+            
+            const navbarButtons = document.querySelector('#navbarSupportedContent');
+            if (!navbarButtons) return;
+            
+            const cartBtn = navbarButtons.querySelector('.btn-cart');
+            const existingButtons = navbarButtons.querySelectorAll('.btn-signin, .btn-signup, .btn-profile');
+            existingButtons.forEach(btn => btn.remove());
+            
+            if (isLoggedIn && userData.fullName) {
+                const profileBtn = document.createElement('button');
+                profileBtn.className = 'btn btn-profile';
+                profileBtn.innerHTML = `<i class="fas fa-user"></i> ${userData.fullName.split(' ')[0]}`;
+                profileBtn.onclick = function() {
+                    window.location.href = 'profile.html';
+                };
+                navbarButtons.insertBefore(profileBtn, cartBtn);
+            } else {
+                const signInBtn = document.createElement('button');
+                signInBtn.className = 'btn btn-signin';
+                signInBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Sign In';
+                signInBtn.onclick = function() {
+                    window.location.href = 'signin.html';
+                };
+                
+                const signUpBtn = document.createElement('button');
+                signUpBtn.className = 'btn btn-signup';
+                signUpBtn.innerHTML = '<i class="fas fa-user-plus"></i> Sign Up';
+                signUpBtn.onclick = function() {
+                    window.location.href = 'signup.html';
+                };
+                
+                navbarButtons.insertBefore(signInBtn, cartBtn);
+                navbarButtons.insertBefore(signUpBtn, cartBtn);
+            }
+        }
+    </script>
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-light" id="navbar">
+        <a class="navbar-brand" href="index.html">
+            <i class="fas fa-drumstick-bite"></i> THE K.K.Y MEAT SHOP & GRILL
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="products.html">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="promotion.html">Promotions</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="track.html">Track</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+                <button class="btn btn-profile" onclick="window.location.href='profile.html'">
+                    <i class="fas fa-user"></i> Profile
+                </button>
+            </ul>
+            <button class="btn btn-signin" onclick="window.location.href='signin.html'">
+                <i class="fas fa-sign-in-alt"></i> Sign In
+            </button>
+            <button class="btn btn-signup" onclick="window.location.href='signup.html'">
+                <i class="fas fa-user-plus"></i> Sign Up
+            </button>
+            <button class="btn btn-cart">
+                <i class="fas fa-shopping-cart"></i> Cart (0)
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section with Slideshow -->
+    <section class="hero-section">
+        <div class="slideshow-container" id="slideshow">
+            <div class="slide active">
+                <img src="back ground.jpg" alt="Premium Meat">
+            </div>
+            <div class="slide">
+                <img src="KKY SHOP.jpg" alt="Premium Meat">
+            </div>
+            <div class="slide">
+                <img src="WHY CHOOSE.jpg" alt="Wagyu Beef">
+            </div>
+            <div class="slide">
+                <img src="WHO WE ARE.jpg" alt="Grilled Steak">
+            </div>
+            <div class="slide">
+                <img src="OUR PRODUCTS.jpg" alt="Grilled Steak">
+            </div>
+        </div>
+        
+        <div class="hero-overlay">
+            <h1>Premium Quality Meats</h1>
+            <p>Meeting Your Meat Requirements</p>
+            <button class="hero-btn" onclick="window.location.href='products.html'">
+                Shop Now <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+
+        <div class="slide-nav">
+            <span class="dot active" onclick="currentSlide(0)"></span>
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <h2>Why Choose K.K.Y?</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <i class="fas fa-certificate"></i>
+                    <h3>Halal Certified</h3>
+                    <p>All our products are 100% halal certified, ensuring quality and trust</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <i class="fas fa-truck"></i>
+                    <h3>Fast Delivery</h3>
+                    <p>Quick and reliable delivery to your doorstep, keeping freshness intact</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <i class="fas fa-star"></i>
+                    <h3>Premium Quality</h3>
+                    <p>Wagyu beef and premium cuts sourced from the finest farms</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Preview -->
+    <section class="product-preview">
+        <h2>Featured Products</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="beef thajima.jpg" alt="Wagyu Beef">
+                <div class="product-info">
+                    <h3>Wagyu Beef Striploin MB 7-8</h3>
+                    <p>Premium marbled Japanese Wagyu beef, perfect for grilling</p>
+                    <div class="product-price">LKR 8,500/kg</div>
+                    <button class="add-to-cart">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="hokubee melt.jpg" alt="Ribeye">
+                <div class="product-info">
+                    <h3>Premium Ribeye Steak</h3>
+                    <p>Tender and juicy ribeye cuts with excellent marbling</p>x
+                    <div class="product-price">LKR 4,200/kg</div>
+                    <button class="add-to-cart">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+            <div class="product-card">
+                <img src="Minced meat.jpg" alt="Lamb Chops">
+                <div class="product-info">
+                    <h3>Fresh Lamb Chops</h3>
+                    <p>Succulent lamb chops, perfect for BBQ and grilling</p>
+                    <div class="product-price">LKR 3,800/kg</div>
+                    <button class="add-to-cart">
+                        <i class="fas fa-cart-plus"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About K.K.Y</h3>
+                <p>The K.K.Y Meat Shop & Grill is your trusted source for premium quality meats. We pride ourselves on delivering halal-certified, fresh products directly to your home.</p>
+                <div class="social-icons">
+                    <a href="https://web.facebook.com/profile.php?id=61571470631955&sk=photos"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/thekkymeatshopngrill/"><i class="fab fa-instagram"></i></a>
+                    <a href="https://api.whatsapp.com/send?phone=%2B94740689243&context=AfeQR1FRT3yKZNrim3S6MoUtJtSOGgzFEwirthcuWPkXn1Lg1MiX4BkxvlANL7shFIjtRRWfozsyX3FlX_7sEPLPKhQlG9YcCyfsOZlQLivueSD4rve8vbEcz_yuzbme8l_7T4GOIqu463LcJF9Kd9a1eQ&source=FB_Page&app=facebook&entry_point=page_cta&fbclid=IwY2xjawNmaKxleHRuA2FlbQIxMABicmlkETFWTTFqcHpudVNtZktkNVpPAR7Qh2SN5J3TIXHnXzLxrxqS_u7KbJonIcDt9WRFxeWysj68LQmysHJ1W8C0gg_aem_I0SZ2wUJTwv2Phv38gvoKg"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="products.html">Products</a>
+                <a href="promotion.html">Promotions</a>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 
+                      No. 21, Kawdana Road, Dehiwala, Sri Lanka, 10350</p>
+                <p><i class="fas fa-phone"></i> 074 068 9243</p>
+                <p><i class="fas fa-envelope"></i> info@kkymeatshop.lk</p>
+            </div>
+            <div class="footer-section">
+                <h3>Opening Hours</h3>
+                <p>Monday - Saturday: 8:00 AM - 8:00 PM</p>
+                <p>Sunday: 9:00 AM - 6:00 PM</p>
+                <p>Public Holidays: Closed</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 The K.K.Y Meat Shop & Grill | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        // Slideshow functionality
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            currentSlideIndex = n;
+            if (currentSlideIndex >= slides.length) currentSlideIndex = 0;
+            if (currentSlideIndex < 0) currentSlideIndex = slides.length - 1;
+            
+            slides[currentSlideIndex].classList.add('active');
+            dots[currentSlideIndex].classList.add('active');
+        }
+
+        function currentSlide(n) {
+            showSlide(n);
+        }
+
+        // Auto slide
+        setInterval(() => {
+            currentSlideIndex++;
+            showSlide(currentSlideIndex);
+        }, 5000);
+
+        // Add to cart functionality
+        document.querySelectorAll('.add-to-cart').forEach(btn => {
+            btn.addEventListener('click', function() {
+                alert('Product added to cart!');
+            });
+        });
+    </script>
+    
+    <script>
+        // Check if user is logged in on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            updateNavbar();
+        });
+    
+        function updateNavbar() {
+            const isLoggedIn = localStorage.getItem('kkyUserSession') === 'true';
+            const userData = JSON.parse(localStorage.getItem('kkyUser') || '{}');
+            
+            // Find the navbar buttons container
+            const navbarButtons = document.querySelector('#navbarSupportedContent');
+            
+            if (!navbarButtons) return;
+            
+            // Remove existing auth buttons
+            const existingButtons = navbarButtons.querySelectorAll('.btn-signin, .btn-signup, .btn-profile');
+            existingButtons.forEach(btn => btn.remove());
+            
+            if (isLoggedIn && userData.fullName) {
+                // User is logged in - Show Profile button
+                const profileBtn = document.createElement('button');
+                profileBtn.className = 'btn btn-profile';
+                profileBtn.innerHTML = `<i class="fas fa-user"></i> ${userData.fullName.split(' ')[0]}`;
+                profileBtn.onclick = function() {
+                    window.location.href = 'profile.html';
+                };
+                
+                navbarButtons.appendChild(profileBtn);
+            } else {
+                // User not logged in - Show Sign In and Sign Up buttons
+                const signInBtn = document.createElement('button');
+                signInBtn.className = 'btn btn-signin';
+                signInBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Sign In';
+                signInBtn.onclick = function() {
+                    window.location.href = 'signin.html';
+                };
+                
+                const signUpBtn = document.createElement('button');
+                signUpBtn.className = 'btn btn-signup';
+                signUpBtn.innerHTML = '<i class="fas fa-user-plus"></i> Sign Up';
+                signUpBtn.onclick = function() {
+                    window.location.href = 'signup.html';
+                };
+                
+                navbarButtons.appendChild(signInBtn);
+                navbarButtons.appendChild(signUpBtn);
+            }
+        }
+    </script>
+    
+    <!-- Add these CSS styles to the <style> section or style.css -->
+    <style>
+        /* Profile button style */
+        #navbarSupportedContent .btn-profile {
+            background: white;
+            color: #dc3545;
+            border: 2px solid #dc3545;
+            padding: 8px 16px;
+            border-radius: 15px;
+            font-weight: 500;
+            transition: all 0.3s;
+            margin-left: 8px;
+            font-size: 12px;
+        }
+    
+        #navbarSupportedContent .btn-profile:hover {
+            background: #dc3545;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
+        }
+        
+        #navbarSupportedContent .btn-signin {
+            background: white;
+            color: #dc3545;
+            border: 2px solid #dc3545;
+        }
+    
+        #navbarSupportedContent .btn-signin:hover {
+            background: #dc3545;
+            color: white;
+        }
+    
+        #navbarSupportedContent .btn-signup {
+            background: #28a745;
+            color: white;
+            border: 2px solid #28a745;
+        }
+    
+        #navbarSupportedContent .btn-signup:hover {
+            background: #218838;
+            border: 2px solid #218838;
+        }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>

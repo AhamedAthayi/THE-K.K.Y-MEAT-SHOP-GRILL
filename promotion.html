@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promotions - K.K.Y MEAT SHOP & GRILL</title>
+    <link rel="icon" type="image/x-icon" href="KKY LOGO.ico">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@300;400;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Fira Sans", sans-serif;
+        }
+
+        body {
+            background: #f8f9fa;
+        }
+
+        /* Navbar */
+        #navbar {
+            position: sticky;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            padding: 0.8rem 5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            background: white;
+        }
+
+        .navbar .navbar-brand {
+            font-size: 22px;
+            font-weight: 800;
+            color: #dc3545 !important;
+            letter-spacing: 1px;
+        }
+
+        #navbarSupportedContent a {
+            color: #333;
+            font-weight: 500;
+            margin: 0 10px;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        #navbarSupportedContent a:hover {
+            border-bottom: 3px solid #dc3545;
+            color: #dc3545;
+        }
+
+        #navbarSupportedContent .btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 9px;
+            border-radius: 15px;
+            font-weight: 500;
+            transition: all 0.3s;
+            margin-left: 8px;
+            font-size: 12px;
+        }
+
+        #navbarSupportedContent .btn:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(200, 53, 69, 0.3);
+        }
+
+        #navbarSupportedContent .btn-signin {
+            background: white;
+            color: #dc3545;
+            border: 2px solid #dc3545;
+        }
+
+        #navbarSupportedContent .btn-signin:hover {
+            background: #dc3545;
+            color: white;
+        }
+
+        #navbarSupportedContent .btn-signup {
+            background: #28a745;
+            color: white;
+            border: 2px solid #28a745;
+        }
+
+        #navbarSupportedContent .btn-signup:hover {
+            background: #218838;
+            border: 2px solid #218838;
+        }
+
+        #navbarSupportedContent .btn-profile {
+            background: white;
+            color: #dc3545;
+            border: 2px solid #dc3545;
+            padding: 8px 16px;
+            border-radius: 15px;
+            font-weight: 500;
+            transition: all 0.3s;
+            margin-left: 8px;
+            font-size: 12px;
+        }
+
+        #navbarSupportedContent .btn-profile:hover {
+            background: #dc3545;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(220, 53, 69, 0.3);
+        }
+
+        /* Hero Banner */
+        .promo-hero {
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            color: white;
+            padding: 80px 5rem;
+            text-align: center;
+        }
+
+        .promo-hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .promo-hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        .promo-hero .badge {
+            background: white;
+            color: #dc3545;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        /* Promotions Section */
+        .promotions-section {
+            padding: 60px 5rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 42px;
+            font-weight: 800;
+            color: #333;
+            margin-bottom: 50px;
+        }
+
+        .promo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        /* Featured Promo Card */
+        .featured-promo {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+            border-radius: 20px;
+            padding: 50px;
+            color: white;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+            box-shadow: 0 10px 40px rgba(220, 53, 69, 0.3);
+        }
+
+        .featured-promo-content h2 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .featured-promo-content p {
+            font-size: 18px;
+            margin-bottom: 10px;
+            opacity: 0.95;
+        }
+
+        .promo-discount {
+            font-size: 72px;
+            font-weight: 900;
+            margin: 20px 0;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .promo-btn {
+            background: white;
+            color: #dc3545;
+            padding: 15px 40px;
+            border-radius: 30px;
+            border: none;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 20px;
+        }
+
+        .promo-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255,255,255,0.3);
+        }
+
+        .featured-promo-image {
+            text-align: center;
+        }
+
+        .featured-promo-image img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        /* Regular Promo Cards */
+        .promo-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .promo-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .promo-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #dc3545;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            z-index: 2;
+        }
+
+        .promo-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .promo-content {
+            padding: 25px;
+        }
+
+        .promo-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .promo-description {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .promo-price {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .old-price {
+            font-size: 20px;
+            color: #999;
+            text-decoration: line-through;
+        }
+
+        .new-price {
+            font-size: 28px;
+            font-weight: 800;
+            color: #dc3545;
+        }
+
+        .promo-validity {
+            background: #f8f9fa;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .promo-validity i {
+            color: #dc3545;
+        }
+
+        .claim-btn {
+            width: 100%;
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .claim-btn:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+        }
+
+        /* Quantity Control */
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .qty-btn {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            border: 2px solid #dc3545;
+            background: white;
+            color: #dc3545;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .qty-btn:hover {
+            background: #dc3545;
+            color: white;
+        }
+
+        .qty-input {
+            width: 60px;
+            text-align: center;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .qty-input:focus {
+            outline: none;
+            border-color: #dc3545;
+        }
+
+        /* Weekly Deals Section */
+        .weekly-deals {
+            background: white;
+            padding: 60px 5rem;
+        }
+
+        .deals-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .deal-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s;
+        }
+
+        .deal-card:hover {
+            border-color: #dc3545;
+            transform: translateY(-5px);
+        }
+
+        .deal-icon {
+            font-size: 50px;
+            color: #dc3545;
+            margin-bottom: 15px;
+        }
+
+        .deal-day {
+            font-size: 18px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .deal-offer {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Newsletter Section */
+        .newsletter {
+            background: linear-gradient(135deg, #333 0%, #222 100%);
+            color: white;
+            padding: 60px 5rem;
+            text-align: center;
+        }
+
+        .newsletter h2 {
+            font-size: 36px;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .newsletter p {
+            font-size: 16px;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .newsletter-form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            gap: 15px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+
+        .newsletter-form button {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .newsletter-form button:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: #222;
+            color: white;
+            padding: 40px 5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #dc3545;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #aaa;
+            font-size: 14px;
+            line-height: 1.8;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background: #333;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .social-icons a:hover {
+            background: #dc3545;
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #aaa;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .featured-promo {
+                grid-template-columns: 1fr;
+                padding: 30px;
+            }
+
+            .featured-promo-content h2 {
+                font-size: 36px;
+            }
+
+            .promo-discount {
+                font-size: 56px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            #navbar, .promo-hero, .promotions-section, .weekly-deals, .newsletter, footer {
+                padding-left: 2rem;
+                padding-right: 2rem;
+            }
+
+            .promo-hero h1 {
+                font-size: 36px;
+            }
+
+            .promo-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light" id="navbar">
+        <a class="navbar-brand" href="index.html">
+            <i class="fas fa-drumstick-bite"></i> THE K.K.Y MEAT SHOP & GRILL
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="products.html">Products</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="promotion.html">Promotions</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="track.html">Track</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">About</a>
+                </li>
+            </ul>
+            <!-- Auth buttons will be dynamically inserted here -->
+            <button class="btn btn-cart">
+                <i class="fas fa-shopping-cart"></i> Cart (0)
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Banner -->
+    <section class="promo-hero">
+        <h1><i class="fas fa-gift"></i> Special Promotions</h1>
+        <p>Grab amazing deals on premium quality meats</p>
+        <span class="badge">Limited Time Offers!</span>
+    </section>
+
+    <!-- Featured Promotion -->
+    <section class="promotions-section">
+        <div class="promo-grid">
+            <div class="featured-promo">
+                <div class="featured-promo-content">
+                    <h2>🎉 Weekend Special!</h2>
+                    <p>Premium Wagyu Beef Collection</p>
+                    <div class="promo-discount">50% OFF</div>
+                    <p><i class="fas fa-clock"></i> Valid: Friday to Sunday</p>
+                    <p><i class="fas fa-box"></i> Minimum order: 2kg</p>
+                    <button class="promo-btn" onclick="window.location.href='products.html'">
+                        Shop Now <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+                <div class="featured-promo-image">
+                    <img src="beef thajima.jpg" alt="Wagyu Beef">
+                </div>
+            </div>
+
+            <!-- Promo Card 1 -->
+            <div class="promo-card">
+                <span class="promo-badge">25% OFF</span>
+                <img src="chicken.jpg" alt="Chicken" class="promo-image">
+                <div class="promo-content">
+                    <h3 class="promo-title">Fresh Chicken Bundle</h3>
+                    <p class="promo-description">Get 25% off on fresh chicken breast, wings, and thighs combo pack</p>
+                    <div class="promo-price">
+                        <span class="old-price">LKR 3,600</span>
+                        <span class="new-price">LKR 2,700</span>
+                    </div>
+                    <div class="promo-validity">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Valid until: Dec 31, 2025</span>
+                    </div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="changeQuantity(this, -1)">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <input type="number" class="qty-input" value="1" min="1" max="50" readonly>
+                        <button class="qty-btn" onclick="changeQuantity(this, 1)">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                    <button class="claim-btn" onclick="addPromoToCart('Fresh Chicken Bundle', 2700, 'chicken.jpg', this)">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Promo Card 2 -->
+            <div class="promo-card">
+                <span class="promo-badge">Buy 2 Get 1</span>
+                <img src="Australian Beef Brisket..jpg" alt="Lamb" class="promo-image">
+                <div class="promo-content">
+                    <h3 class="promo-title">LAustralian Beef Brisket</h3>
+                    <p class="promo-description">Buy 2kg of premium lamb chops and get 1kg absolutely free!</p>
+                    <div class="promo-price">
+                        <span class="old-price">LKR 9,600</span>
+                        <span class="new-price">LKR 6,400</span>
+                    </div>
+                    <div class="promo-validity">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Valid until: Dec 25, 2025</span>
+                    </div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="changeQuantity(this, -1)">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <input type="number" class="qty-input" value="1" min="1" max="50" readonly>
+                        <button class="qty-btn" onclick="changeQuantity(this, 1)">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                    <button class="claim-btn" onclick="addPromoToCart('Lamb Chops Special', 6400, 'lamb.jpg', this)">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Promo Card 3 -->
+            <div class="promo-card">
+                <span class="promo-badge">30% OFF</span>
+                <img src="Minced meat.jpg" alt="Minced Meat" class="promo-image">
+                <div class="promo-content">
+                    <h3 class="promo-title">Minced Meat Deal</h3>
+                    <p class="promo-description">Premium quality minced meat perfect for burgers and meatballs</p>
+                    <div class="promo-price">
+                        <span class="old-price">LKR 2,000</span>
+                        <span class="new-price">LKR 1,400</span>
+                    </div>
+                    <div class="promo-validity">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Valid until: Jan 15, 2026</span>
+                    </div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="changeQuantity(this, -1)">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <input type="number" class="qty-input" value="1" min="1" max="50" readonly>
+                        <button class="qty-btn" onclick="changeQuantity(this, 1)">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                    <button class="claim-btn" onclick="addPromoToCart('Minced Meat Deal', 1400, 'Minced meat.jpg', this)">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Promo Card 4 -->
+            <div class="promo-card">
+                <span class="promo-badge">Free Delivery</span>
+                <img src="hokubee melt.jpg" alt="Ribeye" class="promo-image">
+                <div class="promo-content">
+                    <h3 class="promo-title">Premium Ribeye + Free Delivery</h3>
+                    <p class="promo-description">Order premium ribeye steak and enjoy free delivery to your doorstep</p>
+                    <div class="promo-price">
+                        <span class="old-price">LKR 4,700</span>
+                        <span class="new-price">LKR 4,200</span>
+                    </div>
+                    <div class="promo-validity">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Valid until: Dec 31, 2025</span>
+                    </div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="changeQuantity(this, -1)">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <input type="number" class="qty-input" value="1" min="1" max="50" readonly>
+                        <button class="qty-btn" onclick="changeQuantity(this, 1)">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                    <button class="claim-btn" onclick="addPromoToCart('Premium Ribeye + Free Delivery', 4200, 'hokubee melt.jpg', this)">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Promo Card 5 -->
+            <div class="promo-card">
+                <span class="promo-badge">40% OFF</span>
+                <img src="Salmon Smoked Norwagian.jpg" alt="Salmon" class="promo-image">
+                <div class="promo-content">
+                    <h3 class="promo-title">Smoked Salmon Special</h3>
+                    <p class="promo-description">Premium Norwegian smoked salmon at an unbeatable price</p>
+                    <div class="promo-price">
+                        <span class="old-price">LKR 3,000</span>
+                        <span class="new-price">LKR 1,800</span>
+                    </div>
+                    <div class="promo-validity">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Valid until: Dec 20, 2025</span>
+                    </div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="changeQuantity(this, -1)">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <input type="number" class="qty-input" value="1" min="1" max="50" readonly>
+                        <button class="qty-btn" onclick="changeQuantity(this, 1)">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                    <button class="claim-btn" onclick="addPromoToCart('Smoked Salmon Special', 1800, 'Salmon Smoked Norwagian.jpg', this)">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Promo Card 6 -->
+            <div class="promo-card">
+                <span class="promo-badge">Bundle Deal</span>
+                <img src="beef thajima.jpg" alt="BBQ Pack" class="promo-image">
+                <div class="promo-content">
+                    <h3 class="promo-title">Family BBQ Pack</h3>
+                    <p class="promo-description">Complete BBQ pack with beef, chicken, lamb, and sausages for 6 people</p>
+                    <div class="promo-price">
+                        <span class="old-price">LKR 12,000</span>
+                        <span class="new-price">LKR 9,500</span>
+                    </div>
+                    <div class="promo-validity">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Valid until: Jan 5, 2026</span>
+                    </div>
+                    <div class="quantity-control">
+                        <button class="qty-btn" onclick="changeQuantity(this, -1)">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <input type="number" class="qty-input" value="1" min="1" max="50" readonly>
+                        <button class="qty-btn" onclick="changeQuantity(this, 1)">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                    <button class="claim-btn" onclick="addPromoToCart('Family BBQ Pack', 9500, 'beef thajima.jpg', this)">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Weekly Deals -->
+    <section class="weekly-deals">
+        <h2 class="section-title">Weekly Special Deals</h2>
+        <div class="deals-grid">
+            <div class="deal-card">
+                <div class="deal-icon">🌟</div>
+                <div class="deal-day">Monday</div>
+                <div class="deal-offer">20% OFF on all Chicken Products</div>
+            </div>
+            <div class="deal-card">
+                <div class="deal-icon">🔥</div>
+                <div class="deal-day">Tuesday</div>
+                <div class="deal-offer">Buy 1 Get 1 on Minced Meat</div>
+            </div>
+            <div class="deal-card">
+                <div class="deal-icon">💎</div>
+                <div class="deal-day">Wednesday</div>
+                <div class="deal-offer">15% OFF on Premium Beef</div>
+            </div>
+            <div class="deal-card">
+                <div class="deal-icon">🎁</div>
+                <div class="deal-day">Thursday</div>
+                <div class="deal-offer">Free Delivery on Orders over LKR 5,000</div>
+            </div>
+            <div class="deal-card">
+                <div class="deal-icon">⚡</div>
+                <div class="deal-day">Friday</div>
+                <div class="deal-offer">Flash Sale: Up to 50% OFF</div>
+            </div>
+            <div class="deal-card">
+                <div class="deal-icon">🎉</div>
+                <div class="deal-day">Weekend</div>
+                <div class="deal-offer">Special Bundle Deals & Combos</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="newsletter">
+        <h2><i class="fas fa-envelope"></i> Subscribe to Our Newsletter</h2>
+        <p>Get exclusive deals and promotions delivered to your inbox!</p>
+        <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+            <input type="email" placeholder="Enter your email address" required>
+            <button type="submit">
+                <i class="fas fa-paper-plane"></i> Subscribe
+            </button>
+        </form>
+    </section>
+    
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About K.K.Y</h3>
+                <p>The K.K.Y Meat Shop & Grill is your trusted source for premium quality meats. We pride ourselves on delivering halal-certified, fresh products directly to your home.</p>
+                <div class="social-icons">
+                    <a href="https://web.facebook.com/profile.php?id=61571470631955"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/thekkymeatshopngrill/"><i class="fab fa-instagram"></i></a>
+                    <a href="https://api.whatsapp.com/send?phone=%2B94740689243"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="products.html">Products</a>
+                <a href="promotion.html">Promotions</a>
+                <a href="about.html">About Us</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p><i class="fas fa-map-marker-alt"></i> No. 21, Kawdana Road, Dehiwala, Sri Lanka, 10350</p>
+                <p><i class="fas fa-phone"></i> 074 068 9243</p>
+                <p><i class="fas fa-envelope"></i> info@kkymeatshop.lk</p>
+            </div>
+            <div class="footer-section">
+                <h3>Opening Hours</h3>
+                <p>Monday - Saturday: 8:00 AM - 8:00 PM</p>
+                <p>Sunday: 9:00 AM - 6:00 PM</p>
+                <p>Public Holidays: Closed</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 The K.K.Y Meat Shop & Grill | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        // Check if user is logged in and update navbar
+        window.addEventListener('DOMContentLoaded', function() {
+            updateNavbar();
+        });
+
+        function updateNavbar() {
+            const isLoggedIn = localStorage.getItem('kkyUserSession') === 'true';
+            const userData = JSON.parse(localStorage.getItem('kkyUser') || '{}');
+            
+            const navbarButtons = document.querySelector('#navbarSupportedContent');
+            if (!navbarButtons) return;
+            
+            const cartBtn = navbarButtons.querySelector('.btn-cart');
+            const existingButtons = navbarButtons.querySelectorAll('.btn-signin, .btn-signup, .btn-profile');
+            existingButtons.forEach(btn => btn.remove());
+            
+            if (isLoggedIn && userData.fullName) {
+                const profileBtn = document.createElement('button');
+                profileBtn.className = 'btn btn-profile';
+                profileBtn.innerHTML = `<i class="fas fa-user"></i> ${userData.fullName.split(' ')[0]}`;
+                profileBtn.onclick = function() {
+                    window.location.href = 'profile.html';
+                };
+                
+                navbarButtons.insertBefore(profileBtn, cartBtn);
+            } else {
+                const signInBtn = document.createElement('button');
+                signInBtn.className = 'btn btn-signin';
+                signInBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Sign In';
+                signInBtn.onclick = function() {
+                    window.location.href = 'signin.html';
+                };
+                
+                const signUpBtn = document.createElement('button');
+                signUpBtn.className = 'btn btn-signup';
+                signUpBtn.innerHTML = '<i class="fas fa-user-plus"></i> Sign Up';
+                signUpBtn.onclick = function() {
+                    window.location.href = 'signup.html';
+                };
+                
+                navbarButtons.insertBefore(signInBtn, cartBtn);
+                navbarButtons.insertBefore(signUpBtn, cartBtn);
+            }
+        }
+
+        // Claim offer function
+        function claimOffer(offerName) {
+            const isLoggedIn = localStorage.getItem('kkyUserSession') === 'true';
+            
+            if (!isLoggedIn) {
+                alert('Please sign in to claim this offer!');
+                window.location.href = 'signin.html';
+                return;
+            }
+            
+            // Save claimed offer
+            let claimedOffers = JSON.parse(localStorage.getItem('kkyClaimedOffers') || '[]');
+            
+            if (!claimedOffers.includes(offerName)) {
+                claimedOffers.push(offerName);
+                localStorage.setItem('kkyClaimedOffers', JSON.stringify(claimedOffers));
+                alert(`Congratulations! You've claimed the "${offerName}" promotion. Visit the products page to redeem.`);
+                window.location.href = 'products.html';
+            } else {
+                alert('You have already claimed this offer!');
+            }
+        }
+
+        // Change quantity function
+        function changeQuantity(button, change) {
+            const quantityControl = button.closest('.quantity-control');
+            const input = quantityControl.querySelector('.qty-input');
+            let currentValue = parseInt(input.value) || 1;
+            let newValue = currentValue + change;
+            
+            // Keep value between 1 and 50
+            if (newValue >= 1 && newValue <= 50) {
+                input.value = newValue;
+            }
+        }
+
+        // Add promo to cart function
+        function addPromoToCart(name, price, image, button) {
+            // Get quantity from the button's parent card
+            const promoCard = button.closest('.promo-card');
+            const quantityInput = promoCard.querySelector('.qty-input');
+            const quantity = parseInt(quantityInput.value) || 1;
+
+            // Create cart item
+            const item = {
+                name: name,
+                price: price,
+                image: image,
+                quantity: quantity,
+                isPromo: true
+            };
+
+            // Get existing cart or create new one
+            let cart = JSON.parse(localStorage.getItem('kkyCart') || '[]');
+
+            // Check if item already exists in cart
+            const existingItemIndex = cart.findIndex(i => i.name === name);
+            
+            if (existingItemIndex > -1) {
+                // Update quantity
+                cart[existingItemIndex].quantity += quantity;
+            } else {
+                // Add new item
+                cart.push(item);
+            }
+
+            // Save cart
+            localStorage.setItem('kkyCart', JSON.stringify(cart));
+
+            // Update cart count in navbar
+            updateCartCount();
+
+            // Show success message
+            alert(`${name} (${quantity}kg) added to cart!`);
+
+            // Reset quantity to 1
+            quantityInput.value = 1;
+        }
+
+        // Update cart count in navbar
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('kkyCart') || '[]');
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            
+            const cartBtn = document.querySelector('.btn-cart');
+            if (cartBtn) {
+                cartBtn.innerHTML = `<i class="fas fa-shopping-cart"></i> Cart (${totalItems})`;
+            }
+        }
+
+        // Load cart count on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+        });
+
+        // Newsletter subscription
+        function subscribeNewsletter(event) {
+            event.preventDefault();
+            
+            const emailInput = event.target.querySelector('input[type="email"]');
+            const email = emailInput.value;
+            
+            if (email) {
+                // Save to localStorage (in real app, send to backend)
+                let subscribers = JSON.parse(localStorage.getItem('kkySubscribers') || '[]');
+                
+                if (subscribers.includes(email)) {
+                    alert('You are already subscribed to our newsletter!');
+                } else {
+                    subscribers.push(email);
+                    localStorage.setItem('kkySubscribers', JSON.stringify(subscribers));
+                    alert('Thank you for subscribing! You will receive exclusive deals and promotions.');
+                    emailInput.value = '';
+                }
+            }
+        }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
